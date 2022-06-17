@@ -1,4 +1,4 @@
-# devops-netology
+devops-netology
 DEVSYS-20
 First line
 Second line
@@ -39,7 +39,7 @@ override.tf.json
 .terraformrc
 terraform.rc
 
-othe line
+
 1
 2
 3
@@ -50,4 +50,6 @@ othe line
 8
 9
 10
+
+
 
