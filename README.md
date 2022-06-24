@@ -2,7 +2,7 @@
 
 1. Найдите полный хеш и комментарий коммита, хеш которого начинается на `aefea`.
    	
-	Применил комманду:
+	Применил команду:
 
 	$ git log --oneline aefea
 
@@ -15,7 +15,7 @@
 	
 	В первой строке вывода - aefead220
 
-	Далее выполнил комманду:
+	Далее выполнил команду:
 
 	$ git show aefead220
 	commit aefead2207ef7e2aa5dc81a34aedf0cad4c32545
@@ -37,9 +37,9 @@
 
    	v0.12.23
 
-	Ответ: коммит `85024d3` соответствует тегу v0.12.23.
+	Ответ: комит `85024d3` соответствует тегу v0.12.23.
 
-3. Сколько родителей у коммита `b8d720`? Напишите их хеши.
+3. Сколько родителей у комита `b8d720`? Напишите их хеши.
 
 	Применил комманду:
 
@@ -53,15 +53,15 @@
 
     	[Cherrypick] community links
 
-	В выводе комманды видим, что был сделан merge. Родители:56cd7859e05c36c06b56d013b55a252d0bb7e158 и 9ea88f22fc6269854151c571162c5bcf958bee2b
+	В выводе команды видим, что был сделан merge. Родители:56cd7859e05c36c06b56d013b55a252d0bb7e158 и 9ea88f22fc6269854151c571162c5bcf958bee2b
 
 	Ответ: у коммита `b8d720` два родителя.
 
 
-4. Перечислите хеши и комментарии всех коммитов которые были сделаны между тегами  v0.12.23 и v0.12.24.
+4. Перечислите хеши и комментарии всех комитов которые были сделаны между тегами  v0.12.23 и v0.12.24.
 
 	
-	Применил комманду:
+	Применил команду:
 
 	$ git log --pretty=format:"%H %s" v0.12.23..v0.12.24
 	33ff1c03bb960b332be3af2e333462dde88b279e v0.12.24
@@ -75,7 +75,7 @@
 	dd01a35078f040ca984cdd349f18d0b67e486c35 Update CHANGELOG.md
 	225466bc3e5f35baa5d07197bbc079345b77525e Cleanup after v0.12.23 release
 	
-	Ответ:между тегами v0.12.23 и v0.12.24 8 комитов:
+	Ответ: между тегами v0.12.23 и v0.12.24 8 комитов:
 
                 	   Хэш	                        Комментарий
 	b14b74c4939dcab573326f4e3ee2a62e23e12f89 [Website] vmc provider links
@@ -88,16 +88,16 @@
 	dd01a35078f040ca984cdd349f18d0b67e486c35 Update CHANGELOG.md
 
 	
-5. Найдите коммит в котором была создана функция `func providerSource`, ее определение в коде выглядит 
+5. Найдите комит в котором была создана функция `func providerSource`, ее определение в коде выглядит 
    так `func providerSource(...)` (вместо троеточего перечислены аргументы).
 
-	Применил комманду: 
+	Применил команду: 
 	
 	$ git log -S 'func providerSource' --pretty=format:"%h, %an, %ad, %s"
 	5af1e6234, Martin Atkins, Tue Apr 21 16:28:59 2020 -0700, main: Honor explicit provider_installation CLI config when present
 	8c928e835, Martin Atkins, Thu Apr 2 18:04:39 2020 -0700, main: Consult local directories as potential mirrors of providers
 	
-	Первый коммит в котором была создана функция `func providerSource`:
+	Первый комит в котором была создана функция `func providerSource`:
 
 	$ git show 8c928e835
 	commit 8c928e83589d90a031f811fae52a81be7153e82f
@@ -122,7 +122,7 @@
 
 7. Кто автор функции `synchronizedWriters`? 
 
-	Применил комманду:
+	Применил команду:
 
 	$ git log -S synchronizedWriters --oneline
 	bdfea50cc remove unused
@@ -130,7 +130,7 @@
 	5ac311e2a main: synchronize writes to VT100-faker on Windows
 	
 	Первый комит, где встречается функции `synchronizedWriters` 5ac311e2a.
-	Далее выполнил комманду:
+	Далее выполнил команду:
 
 	$ git show 5ac311e2a
 
