@@ -1,144 +1,170 @@
-# Доработанное решение домашнего задания к занятию «2.4. Инструменты Git»
+# Решение домашнего задания к занятию "3.1. Работа в терминале, лекция 1"
 
-1. Найдите полный хеш и комментарий коммита, хеш которого начинается на `aefea`.
-   	
-	Применил команду:
+1. Установите средство виртуализации [Oracle VirtualBox](https://www.virtualbox.org/).
 
-	$ git log --oneline aefea
+    Установлен из дистрибутива: VirtualBox-6.1.34-150636-Win.exe
+    Так же установлен: Oracle_VM_VirtualBox_Extension_Pack-6.1.34-150636.vbox-extpack
 
-	aefead220 Update CHANGELOG.md
-	c12ad38c5 Merge pull request #25277 from hashicorp/alisdair/fix-terraform-version-version
-	.
-	.
-	.	
-	.
-	
-	В первой строке вывода - aefead220
+2. Установите средство автоматизации [Hashicorp Vagrant](https://www.vagrantup.com/).
 
-	Далее выполнил команду:
+    Установлен из дистрибутива: vagrant_2.2.19_i686.msi
 
-	$ git show aefead220
-	commit aefead2207ef7e2aa5dc81a34aedf0cad4c32545
-	Author: Alisdair McDiarmid <alisdair@users.noreply.github.com>
-	Date:   Thu Jun 18 10:29:58 2020 -0400
+3. В вашем основном окружении подготовьте удобный для дальнейшей работы терминал. Можно предложить:
 
-    	Update CHANGELOG.md
+    Windows Terminal в Windows.
+       
+    Стандартное приглашение: vagrant@vagrant-ubuntu-trusty-64:~$
+    Настроенное приглашение: 12:19:44 vagrant@vagrant-ubuntu-trusty-64(0):~$
+    В приглашении добавил текущее время и число фоновых процессов:
+    PS1='${debian_chroot:+($debian_chroot)}\t \[\033[01;32m\]\u@\h(\j)\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+    
 
-	Ответ: полный хеш и комментарий коммита, который начинается на `aefea`: aefead2207ef7e2aa5dc81a34aedf0cad4c32545 Update CHANGELOG.md
+  
+4. С помощью базового файла конфигурации запустите Ubuntu 20.04 в VirtualBox посредством Vagrant:
 
-2. Какому тегу соответствует коммит `85024d3`?
+    Выполнено:
+    
+    vagrant init bento/ubuntu-20.04
+    vagrant up
+    vagrant status
+    vagrant suspend
+    vagrant up
+    vagrant halt
+    vagrant reload
+    vagrant ssh
+    
+5. Ознакомьтесь с графическим интерфейсом VirtualBox, посмотрите как выглядит виртуальная машина, которую создал для вас Vagrant, какие аппаратные ресурсы ей выделены. Какие ресурсы выделены по-умолчанию?
 
-	Применил комманду:
+   По-умолчанию выделено:
 
-	$ git show 85024d3
-	commit 85024d3100126de36331c6982bfaac02cdab9e76 (tag: v0.12.23)
-	Author: tf-release-bot <terraform@hashicorp.com>
-	Date:   Thu Mar 5 20:56:10 2020 +0000
+   RAM:1024mb
+   CPU:1 cpu
+   HDD:64gb
+   video:8mb
 
-   	v0.12.23
+   Изменил на:
+   
+   RAM:1024mb
+   CPU:2 cpu
+   HDD:64gb
+   video:32mb
 
-	Ответ: комит `85024d3` соответствует тегу v0.12.23.
+6. Ознакомьтесь с возможностями конфигурации VirtualBox через Vagrantfile: [документация](https://www.vagrantup.com/docs/providers/virtualbox/configuration.html). Как добавить оперативной памяти или ресурсов процессора виртуальной машине?
 
-3. Сколько родителей у комита `b8d720`? Напишите их хеши.
+   config.vm.provider "virtualbox" do |vb|   
+   vb.memory = "1024"
+   vb.cpus = 2
+   end
+   
+7. Команда `vagrant ssh` из директории, в которой содержится Vagrantfile, позволит вам оказаться внутри виртуальной машины без каких-либо дополнительных настроек. Попрактикуйтесь в выполнении обсуждаемых команд в терминале Ubuntu.
 
-	Применил комманду:
+   Ввел команду: vagrant ssh, перешел на виртуальной машине. Попракитиковался....
 
-	$ git show b8d720
-	commit b8d720f8340221f2146e4e4870bf2ee0bc48f2d5
-	Merge: 56cd7859e 9ea88f22f
-	Author: Chris Griggs <cgriggs@hashicorp.com>
-	Date:   Tue Jan 21 17:45:48 2020 -0800
+   Welcome to Ubuntu 14.04.6 LTS (GNU/Linux 3.13.0-170-generic x86_64)
+   * Documentation:  https://help.ubuntu.com/
+   System information as of Tue Jun 28 14:32:50 UTC 2022
+   System load:  0.76              Processes:           107
+   Usage of /:   3.6% of 39.34GB   Users logged in:     0
+   Memory usage: 8%                IP address for eth0: 10.0.2.15
+   Swap usage:   0%
+  
+   Graph this data and manage this system at:
+   https://landscape.canonical.com/
 
-   	Merge pull request #23916 from hashicorp/cgriggs01-stable
+   UA Infrastructure Extended Security Maintenance (ESM) is not enabled.
 
-    	[Cherrypick] community links
+   0 updates can be installed immediately.
+   0 of these updates are security updates.
 
-	В выводе команды видим, что был сделан merge. Родители:56cd7859e05c36c06b56d013b55a252d0bb7e158 и 9ea88f22fc6269854151c571162c5bcf958bee2b
+   Enable UA Infrastructure ESM to receive 64 additional security updates.
+   See https://ubuntu.com/advantage or run: sudo ua status
 
-	Ответ: у коммита `b8d720` два родителя.
+   New release '16.04.7 LTS' available.
+   Run 'do-release-upgrade' to upgrade to it.
 
+   Last login: Tue Jun 28 14:29:52 2022 from 10.0.2.2
+   
+   vagrant@vagrant-ubuntu-trusty-64:~$
+   vagrant@vagrant-ubuntu-trusty-64:~$ uptime
+   14:39:57 up 7 min,  1 user,  load average: 0.00, 0.05, 0.05
+   vagrant@vagrant-ubuntu-trusty-64:~$ sudo apt-get update
+   Reading package lists... Done
+   vagrant@vagrant-ubuntu-trusty-64:~$
 
-4. Перечислите хеши и комментарии всех комитов которые были сделаны между тегами  v0.12.23 и v0.12.24.
+   И другие команды....
 
-	
-	Применил команду:
+8. Ознакомиться с разделами `man bash`, почитать о настройках самого bash:
+    * какой переменной можно задать длину журнала `history`, и на какой строчке manual это описывается?
+      HISTFILESIZE - максимальное число строк в файле истории для сохранения, строка 564
+    * что делает директива `ignoreboth` в bash?
+      A value of ignoreboth is shorthand for ignorespace and ignoredups.
+      ignoreboth это сокращение для команд ignorespace and ignoredups, 
+      ignorespace - не сохранять команды начинающиеся с пробела, а ignoredups - не сохранять команду, если такая уже есть в истории
+      
+9. В каких сценариях использования применимы скобки `{}` и на какой строчке `man bash` это описано?
+ 
+   {} - зарезервированные слова, список команд в отличии от "(...)" исполнятся в текущем инстансе в различных условных циклах, условных операторах, или ограничивает тело функции.
+      В командах выполняет подстановку элементов из списка , если упрощенно то  цикличное выполнение команд с подстановкой например mkdir ./DIR_{A..Z} - создаст каталоги сименами DIR_A, DIR_B...DIR_Z.
+      Cтрока 132.
 
-	$ git log --pretty=format:"%H %s" v0.12.23..v0.12.24
-	33ff1c03bb960b332be3af2e333462dde88b279e v0.12.24
-	b14b74c4939dcab573326f4e3ee2a62e23e12f89 [Website] vmc provider links
-	3f235065b9347a758efadc92295b540ee0a5e26e Update CHANGELOG.md
-	6ae64e247b332925b872447e9ce869657281c2bf registry: Fix panic when server is unreachable
-	5c619ca1baf2e21a155fcdb4c264cc9e24a2a353 website: Remove links to the getting started guide's old location
-	06275647e2b53d97d4f0a19a0fec11f6d69820b5 Update CHANGELOG.md
-	d5f9411f5108260320064349b757f55c09bc4b80 command: Fix bug when using terraform login on Windows
-	4b6d06cc5dcb78af637bbb19c198faff37a066ed Update CHANGELOG.md
-	dd01a35078f040ca984cdd349f18d0b67e486c35 Update CHANGELOG.md
-	225466bc3e5f35baa5d07197bbc079345b77525e Cleanup after v0.12.23 release
-	
-	Ответ: между тегами v0.12.23 и v0.12.24 8 комитов:
+10. С учётом ответа на предыдущий вопрос, как создать однократным вызовом `touch` 100000 файлов? Получится ли аналогичным образом создать 300000? Если нет, то почему?
 
-                	   Хэш	                        Комментарий
-	b14b74c4939dcab573326f4e3ee2a62e23e12f89 [Website] vmc provider links
-	3f235065b9347a758efadc92295b540ee0a5e26e Update CHANGELOG.md
-	6ae64e247b332925b872447e9ce869657281c2bf registry: Fix panic when server is unreachable
-	5c619ca1baf2e21a155fcdb4c264cc9e24a2a353 website: Remove links to the getting started guide's old location
-	06275647e2b53d97d4f0a19a0fec11f6d69820b5 Update CHANGELOG.md
-	d5f9411f5108260320064349b757f55c09bc4b80 command: Fix bug when using terraform login on Windows
-	4b6d06cc5dcb78af637bbb19c198faff37a066ed Update CHANGELOG.md
-	dd01a35078f040ca984cdd349f18d0b67e486c35 Update CHANGELOG.md
+    vagrant@vagrant-ubuntu-trusty-64:~$ touch {1..116057}.txt
+    vagrant@vagrant-ubuntu-trusty-64:~$ touch {1..116058}.txt
+    -bash: /usr/bin/touch: Argument list too long
 
-	
-5. Найдите комит в котором была создана функция `func providerSource`, ее определение в коде выглядит 
-   так `func providerSource(...)` (вместо троеточего перечислены аргументы).
+     100000 файлов создать получится. Максимум 116058. 300000 не получиться - список аргументов слишком большой.
 
-	Применил команду: 
-	
-	$ git log -S 'func providerSource' --pretty=format:"%h, %an, %ad, %s"
-	5af1e6234, Martin Atkins, Tue Apr 21 16:28:59 2020 -0700, main: Honor explicit provider_installation CLI config when present
-	8c928e835, Martin Atkins, Thu Apr 2 18:04:39 2020 -0700, main: Consult local directories as potential mirrors of providers
-	
-	Первый комит в котором была создана функция `func providerSource`:
+11. В man bash поищите по `/\[\[`. Что делает конструкция `[[ -d /tmp ]]`
 
-	$ git show 8c928e835
-	commit 8c928e83589d90a031f811fae52a81be7153e82f
-	Author: Martin Atkins <mart@degeneration.co.uk>
-	Date:   Thu Apr 2 18:04:39 2020 -0700
+    Эта конструкция проверяет условие у -d /tmp и возвращает ее статус (0 или 1), наличие каталога /tmp
 
-	Ответ: коммит в котором была создана функция `func providerSource` - 8c928e83589d90a031f811fae52a81be7153e82f
+    Пример:
 
-6. Найдите все коммиты в которых была изменена функция `globalPluginDirs`.
+    if [[ -d /tmp ]]
+    then
+    echo "каталог есть"
+    else
+    echo "каталога нет"
+    fi
 
-	Применил комманду:
+12. Основываясь на знаниях о просмотре текущих (например, PATH) и установке новых переменных; командах, которые мы рассматривали, добейтесь в выводе type -a bash в виртуальной машине наличия первым пунктом в списке:
 
-	$ git log -S globalPluginDirs --oneline
-	125eb51dc Remove accidentally-committed binary
-	22c121df8 Bump compatibility version to 1.3.0 for terraform core release (#30988)
-	35a058fb3 main: configure credentials from the CLI config file
-	c0b176109 prevent log output during init
-	8364383c3 Push plugin discovery down into command package
+     ```bash
+     bash is /tmp/new_path_directory/bash
+     bash is /usr/local/bin/bash
+     bash is /bin/bash
+     ```
+    Вводим команды:
 
-	Ответ: получил 5 коммитов в которых была изменена функция `globalPluginDirs`.
+     mkdir /tmp/new_path_directory/
+     sudo su
+     cp /bin/bash /tmp/new_path_directory/
+     cp /bin/bash /usr/local/bin/
+     PATH=/tmp/new_path_directory/:$PATH
+     type -a bash
+     bash is /tmp/new_path_directory/bash
+     bash is /usr/local/bin/bash
+     bash is /bin/bash
+     
+     (прочие строки могут отличаться содержимым и порядком)
+     В качестве ответа приведите команды, которые позволили вам добиться указанного вывода или соответствующие скриншоты.
 
+13. Чем отличается планирование команд с помощью `batch` и `at`?
 
-7. Кто автор функции `synchronizedWriters`? 
+    at - команда запускается в указанное время (в параметре)
+    batch - запускается когда уровень загрузки системы снизится ниже 1.5
 
-	Применил команду:
+14. Завершите работу виртуальной машины чтобы не расходовать ресурсы компьютера и/или батарею ноутбука.
 
-	$ git log -S synchronizedWriters --oneline
-	bdfea50cc remove unused
-	fd4f7eb0b remove prefixed io
-	5ac311e2a main: synchronize writes to VT100-faker on Windows
-	
-	Первый комит, где встречается функции `synchronizedWriters` 5ac311e2a.
-	Далее выполнил команду:
+    vagrant status
+    Current machine states:
 
-	$ git show 5ac311e2a
+    default                   running (virtualbox)    
 
-	Получил:	
+    vagrant suspend
+    vagrant status
+    Current machine states:
 
-	commit 5ac311e2a91e381e2f52234668b49ba670aa0fe5
-	Author: Martin Atkins <mart@degeneration.co.uk>
-	Date:   Wed May 3 16:25:41 2017 -0700
-
-    	
-	Ответ: автор функции `synchronizedWriters`- Martin Atkins.
+    default                   saved (virtualbox)
+    
