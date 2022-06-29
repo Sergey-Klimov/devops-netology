@@ -12,18 +12,17 @@
 3. В вашем основном окружении подготовьте удобный для дальнейшей работы терминал. Можно предложить:
 
     Windows Terminal в Windows.
-       
     Стандартное приглашение: vagrant@vagrant-ubuntu-trusty-64:~$
     Настроенное приглашение: 12:19:44 vagrant@vagrant-ubuntu-trusty-64(0):~$
     В приглашении добавил текущее время и число фоновых процессов:
     PS1='${debian_chroot:+($debian_chroot)}\t \[\033[01;32m\]\u@\h(\j)\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
-    
+ 
 
-  
+ 
 4. С помощью базового файла конфигурации запустите Ubuntu 20.04 в VirtualBox посредством Vagrant:
 
     Выполнено:
-    
+ 
     vagrant init bento/ubuntu-20.04
     vagrant up
     vagrant status
