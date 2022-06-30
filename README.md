@@ -85,11 +85,10 @@
 
 10. С учётом ответа на предыдущий вопрос, как создать однократным вызовом `touch` 100000 файлов? Получится ли аналогичным образом создать 300000? Если нет, то почему?
 
-    14:08:45 vagrant@vagrant(0):~$ touch {1..116100}.txt
-    
-    14:08:50 vagrant@vagrant(0):~$ touch {1..116101}.txt
+    14:08:45 vagrant@vagrant(0):$ touch {1..116100}.txt
+    14:08:50 vagrant@vagrant(0):$ touch {1..116101}.txt
     bash: /usr/bin/touch: Argument list too long
-    14:08:53 vagrant@vagrant(0):~$
+    14:08:53 vagrant@vagrant(0):$
 
      100000 файлов создать получится. Максимум 116101. 300000 не получиться - список аргументов слишком большой.
 
@@ -106,9 +105,9 @@
     >     echo "Каталога нет"
     >     fi
     Каталог есть
-    vagrant@vagrant:~$ echo $?
+    vagrant@vagrant:$ echo $?
     0
-    vagrant@vagrant:~$
+    vagrant@vagrant:$
 
 12. Основываясь на знаниях о просмотре текущих (например, PATH) и установке новых переменных; командах, которые мы рассматривали, добейтесь в выводе type -a bash в виртуальной машине наличия первым пунктом в списке:
 
@@ -119,8 +118,8 @@
      ```
     Вводим команды:
 
-    vagrant@vagrant(0):~$ mkdir /tmp/new_path_directory/
-    vagrant@vagrant(0):~$ sudo su
+    vagrant@vagrant(0):$ mkdir /tmp/new_path_directory/
+    vagrant@vagrant(0):$ sudo su
     root@vagrant:/home/vagrant# cp /bin/bash /tmp/new_path_directory/
     root@vagrant:/home/vagrant# PATH=/tmp/new_path_directory/:$PATH
     root@vagrant:/home/vagrant# type -a bash
