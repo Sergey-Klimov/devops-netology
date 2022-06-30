@@ -12,8 +12,8 @@
 3. В вашем основном окружении подготовьте удобный для дальнейшей работы терминал. Можно предложить:
 
     Windows Terminal в Windows.
-    Стандартное приглашение: vagrant@vagrant:~$
-    Настроенное приглашение: 14:00:13 vagrant@vagrant(0):~$
+    Стандартное приглашение: vagrant@vagrant:$
+    Настроенное приглашение: 14:00:13 vagrant@vagrant(0):$
     В приглашении добавил текущее время и число фоновых процессов:
     PS1='${debian_chroot:+($debian_chroot)}\t \[\033[01;32m\]\u@\h(\j)\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
  
@@ -53,14 +53,14 @@
 
    Ввел команду: vagrant ssh, перешел на виртуальной машине. Попракитиковался....
 
-   vagrant@vagrant:~$ cat /etc/lsb-release
+   vagrant@vagrant:$ cat /etc/lsb-release
    DISTRIB_ID=Ubuntu
    DISTRIB_RELEASE=20.04
    DISTRIB_CODENAME=focal
    DISTRIB_DESCRIPTION="Ubuntu 20.04.4 LTS"
-   vagrant@vagrant:~$ uptime
-   vagrant@vagrant:~$ PS1='${debian_chroot:+($debian_chroot)}\t \[\033[01;32m\]\u@\h(\j)\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
-   14:00:13 vagrant@vagrant(0):~$ sudo apt-get update
+   vagrant@vagrant:$ uptime
+   vagrant@vagrant:$ PS1='${debian_chroot:+($debian_chroot)}\t \[\033[01;32m\]\u@\h(\j)\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+   14:00:13 vagrant@vagrant(0):$ sudo apt-get update
    Hit:1 http://in.archive.ubuntu.com/ubuntu focal InRelease
    Hit:2 http://in.archive.ubuntu.com/ubuntu focal-updates InRelease
    Hit:3 http://in.archive.ubuntu.com/ubuntu focal-backports InRelease
@@ -98,7 +98,7 @@
 
     Пример:
 
-    vagrant@vagrant:~$ if [[ -d /tmp ]]
+    vagrant@vagrant:$ if [[ -d /tmp ]]
     >     then
     >     echo "Каталог есть"
     >     else
