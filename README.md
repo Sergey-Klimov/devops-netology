@@ -54,10 +54,6 @@
    Ввел команду: vagrant ssh, перешел на виртуальной машине. Попракитиковался....
 
    vagrant@vagrant:$ cat /etc/lsb-release
-   DISTRIB_ID=Ubuntu
-   DISTRIB_RELEASE=20.04
-   DISTRIB_CODENAME=focal
-   DISTRIB_DESCRIPTION="Ubuntu 20.04.4 LTS"
    vagrant@vagrant:$ uptime
    И другие команды....
 
