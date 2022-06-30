@@ -59,13 +59,6 @@
    DISTRIB_CODENAME=focal
    DISTRIB_DESCRIPTION="Ubuntu 20.04.4 LTS"
    vagrant@vagrant:$ uptime
-   14:00:13 vagrant@vagrant(0):$ sudo apt-get update
-   Hit:1 http://in.archive.ubuntu.com/ubuntu focal InRelease
-   Hit:2 http://in.archive.ubuntu.com/ubuntu focal-updates InRelease
-   Hit:3 http://in.archive.ubuntu.com/ubuntu focal-backports InRelease
-   Hit:4 http://in.archive.ubuntu.com/ubuntu focal-security InRelease
-   Reading package lists... Done
-
    И другие команды....
 
 8. Ознакомиться с разделами `man bash`, почитать о настройках самого bash:
