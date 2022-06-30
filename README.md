@@ -59,7 +59,6 @@
    DISTRIB_CODENAME=focal
    DISTRIB_DESCRIPTION="Ubuntu 20.04.4 LTS"
    vagrant@vagrant:$ uptime
-   vagrant@vagrant:$ PS1='${debian_chroot:+($debian_chroot)}\t \[\033[01;32m\]\u@\h(\j)\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
    14:00:13 vagrant@vagrant(0):$ sudo apt-get update
    Hit:1 http://in.archive.ubuntu.com/ubuntu focal InRelease
    Hit:2 http://in.archive.ubuntu.com/ubuntu focal-updates InRelease
