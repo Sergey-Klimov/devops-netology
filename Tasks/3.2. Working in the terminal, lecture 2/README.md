@@ -14,9 +14,9 @@
 
    Пример: 
 
-   vagrant@vagrant:~$ grep 12345 test -c
+   vagrant@vagrant:$ grep 12345 test -c
    1
-   vagrant@vagrant:~$ grep 12345 test |wc -l
+   vagrant@vagrant:$ grep 12345 test |wc -l
    1
    
 3. Какой процесс с PID 1 является родителем для всех процессов в вашей виртуальной машине Ubuntu 20.04?
@@ -193,7 +193,7 @@
     запустили по ошибке в обычной SSH-сессии.
 
     vagrant@vagrant:$ sudo -i
-    root@vagrant:~# apt install reptyr
+    root@vagrant:# apt install reptyr
     Reading package lists... Done
     Building dependency tree
     Reading state information... Done
