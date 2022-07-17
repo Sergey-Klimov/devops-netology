@@ -227,8 +227,8 @@
                                     7581  - Количество возможных одновременно запущенных процессов.
 
    Далее установил предельное значение для одновременно запущенных процессов:
-                                    vagrant@vagrant:~$ ulimit -u 1000
-                                    vagrant@vagrant:~$ ulimit -u
+                                    vagrant@vagrant:$ ulimit -u 1000
+                                    vagrant@vagrant:$ ulimit -u
                                     1000
 
    
