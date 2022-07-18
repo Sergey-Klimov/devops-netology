@@ -26,64 +26,49 @@
                                                        User=node_exporter
                                                        Group=node_exporter 
                                                        Type=simple
-                                                       ExecStart=/usr/local/bin/node_exporter
+                                                       EnvironmentFile=/etc/default/node_exporter                                                    
+                                                       ExecStart=/usr/local/bin/node_exporter $OPTIONS
 
                                                        [Install]
                                                        WantedBy=multi-user.target
       
-   Перезагрузил демона:                             sudo systemctl daemon-reload
-   Запустил службу node_exporter с помощью команды: sudo systemctl start node_exporter
-   Node_exporter запускается после перезагрузки виртуальной машины: 
-   systemctl status node_exporter.service
+   Для передачи в службу дополнительных опций выполнил следующие команды:
+
+   vvagrant@vagrant:$ cat /etc/default/node_exporter
+   OPTIONS="--collector.textfile.directory /var/lib/node_exporter/textfile_collector"
+   
+   Перезагрузил демона: sudo systemctl daemon-reload
+   
+   Перезагрузил VM:     vagrant@vagrant:$ sudo reboot
+   
+   vagrant@vagrant:$ systemctl status node_exporter.service
    ● node_exporter.service - Node Exporter
      Loaded: loaded (/etc/systemd/system/node_exporter.service; enabled; vendor preset: enabled)
-     Active: active (running) since Sun 2022-07-17 12:37:21 UTC; 36min ago
-   Main PID: 620 (node_exporter)
+     Active: active (running) since Mon 2022-07-18 09:46:31 UTC; 40s ago
+   Main PID: 611 (node_exporter)
       Tasks: 3 (limit: 2274)
-     Memory: 14.0M
+     Memory: 14.1M
      CGroup: /system.slice/node_exporter.service
-             └─620 /usr/local/bin/node_exporter
+             └─611 /usr/local/bin/node_exporter --collector.textfile.directory /var/lib/node_exporter/textfile_collector
 
-   Jul 17 12:37:22 vagrant node_exporter[620]: ts=2022-07-17T12:37:22.132Z caller=node_exporter.go:115 level=info collector=thermal_zone
-   Jul 17 12:37:22 vagrant node_exporter[620]: ts=2022-07-17T12:37:22.132Z caller=node_exporter.go:115 level=info collector=time
-   Jul 17 12:37:22 vagrant node_exporter[620]: ts=2022-07-17T12:37:22.132Z caller=node_exporter.go:115 level=info collector=timex
-   Jul 17 12:37:22 vagrant node_exporter[620]: ts=2022-07-17T12:37:22.132Z caller=node_exporter.go:115 level=info collector=udp_queues
-   Jul 17 12:37:22 vagrant node_exporter[620]: ts=2022-07-17T12:37:22.132Z caller=node_exporter.go:115 level=info collector=uname
-   Jul 17 12:37:22 vagrant node_exporter[620]: ts=2022-07-17T12:37:22.132Z caller=node_exporter.go:115 level=info collector=vmstat
-   Jul 17 12:37:22 vagrant node_exporter[620]: ts=2022-07-17T12:37:22.132Z caller=node_exporter.go:115 level=info collector=xfs
-   Jul 17 12:37:22 vagrant node_exporter[620]: ts=2022-07-17T12:37:22.132Z caller=node_exporter.go:115 level=info collector=zfs
-   Jul 17 12:37:22 vagrant node_exporter[620]: ts=2022-07-17T12:37:22.132Z caller=node_exporter.go:199 level=info msg="Listening on" address=:9100
-   Jul 17 12:37:22 vagrant node_exporter[620]: ts=2022-07-17T12:37:22.133Z caller=tls_config.go:195 level=info msg="TLS is disabled." http2=false
-   
-   После перезагрузки меняется Main PID:
-
-  systemctl status node_exporter.service
-  ● node_exporter.service - Node Exporter
-     Loaded: loaded (/etc/systemd/system/node_exporter.service; enabled; vendor preset: enabled)
-     Active: active (running) since Sun 2022-07-17 13:17:06 UTC; 1min 59s ago
-   Main PID: 614 (node_exporter)
-      Tasks: 3 (limit: 2274)
-     Memory: 14.2M
-     CGroup: /system.slice/node_exporter.service
-             └─614 /usr/local/bin/node_exporter
-
-  Jul 17 13:17:08 vagrant node_exporter[614]: ts=2022-07-17T13:17:07.966Z caller=node_exporter.go:115 level=info collector=thermal_zone
-  Jul 17 13:17:08 vagrant node_exporter[614]: ts=2022-07-17T13:17:07.966Z caller=node_exporter.go:115 level=info collector=time
-  Jul 17 13:17:08 vagrant node_exporter[614]: ts=2022-07-17T13:17:07.966Z caller=node_exporter.go:115 level=info collector=timex  
-  Jul 17 13:17:08 vagrant node_exporter[614]: ts=2022-07-17T13:17:07.966Z caller=node_exporter.go:115 level=info collector=udp_queues
-  Jul 17 13:17:08 vagrant node_exporter[614]: ts=2022-07-17T13:17:07.966Z caller=node_exporter.go:115 level=info collector=uname
-  Jul 17 13:17:08 vagrant node_exporter[614]: ts=2022-07-17T13:17:07.966Z caller=node_exporter.go:115 level=info collector=vmstat
-  Jul 17 13:17:08 vagrant node_exporter[614]: ts=2022-07-17T13:17:07.966Z caller=node_exporter.go:115 level=info collector=xfs
-  Jul 17 13:17:08 vagrant node_exporter[614]: ts=2022-07-17T13:17:07.966Z caller=node_exporter.go:115 level=info collector=zfs
-  Jul 17 13:17:08 vagrant node_exporter[614]: ts=2022-07-17T13:17:07.966Z caller=node_exporter.go:199 level=info msg="Listening on" address=:9100
-  Jul 17 13:17:08 vagrant node_exporter[614]: ts=2022-07-17T13:17:07.970Z caller=tls_config.go:195 level=info msg="TLS is disabled." http2=false
+  Jul 18 09:46:32 vagrant node_exporter[611]: ts=2022-07-18T09:46:32.245Z caller=node_exporter.go:115 level=info collector=thermal_zone 
+  Jul 18 09:46:32 vagrant node_exporter[611]: ts=2022-07-18T09:46:32.245Z caller=node_exporter.go:115 level=info collector=time
+  Jul 18 09:46:32 vagrant node_exporter[611]: ts=2022-07-18T09:46:32.245Z caller=node_exporter.go:115 level=info collector=timex
+  Jul 18 09:46:32 vagrant node_exporter[611]: ts=2022-07-18T09:46:32.245Z caller=node_exporter.go:115 level=info collector=udp_queues
+  Jul 18 09:46:32 vagrant node_exporter[611]: ts=2022-07-18T09:46:32.245Z caller=node_exporter.go:115 level=info collector=uname
+  Jul 18 09:46:32 vagrant node_exporter[611]: ts=2022-07-18T09:46:32.245Z caller=node_exporter.go:115 level=info collector=vmstat
+  Jul 18 09:46:32 vagrant node_exporter[611]: ts=2022-07-18T09:46:32.245Z caller=node_exporter.go:115 level=info collector=xfs
+  Jul 18 09:46:32 vagrant node_exporter[611]: ts=2022-07-18T09:46:32.245Z caller=node_exporter.go:115 level=info collector=zfs
+  Jul 18 09:46:32 vagrant node_exporter[611]: ts=2022-07-18T09:46:32.245Z caller=node_exporter.go:199 level=info msg="Listening on" address=:9100
+  Jul 18 09:46:32 vagrant node_exporter[611]: ts=2022-07-18T09:46:32.251Z caller=tls_config.go:195 level=info msg="TLS is disabled." http2=false
 
    ps -e |grep node_exporter
-   614 ?        00:00:00 node_exporter
+   611 ?        00:00:00 node_exporter
 
-  sudo cat /proc/614/environ
+  vagrant@vagrant:$ sudo cat /proc/611/environ
   LANG=en_US.UTF-8PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/binHOME=
-  /home/node_exporterLOGNAME=node_exporterUSER=node_exporterINVOCATION_ID=1094148200a84c19b6185023992336eaJOURNAL_STREAM=9:22275vagrant@vagrant:~$
+  /home/node_exporterLOGNAME=node_exporterUSER=node_exporterINVOCATION_ID=642934b0bb764ba89e51759d171e847dJOURNAL_STREAM=
+  9:22272 OPTIONS=--collector.textfile.directory /var/lib/node_exporter/textfile_collectorvagrant@vagrant:~$
 
 2. Ознакомьтесь с опциями node_exporter и выводом /metrics по-умолчанию. Приведите несколько опций, которые вы бы выбрали
    для базового мониторинга хоста по CPU, памяти, диску и сети.
