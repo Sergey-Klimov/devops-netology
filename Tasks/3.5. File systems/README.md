@@ -325,8 +325,8 @@
    Решение:
  
    vagrant@vagrant:$ sudo -i
-   root@vagrant:~# gzip -t /tmp/new/test.gz
-   root@vagrant:~# echo $?
+   root@vagrant:# gzip -t /tmp/new/test.gz
+   root@vagrant:# echo $?
    0
 
    16. Используя pvmove, переместите содержимое PV с RAID0 на RAID1.
@@ -358,7 +358,7 @@
 
    Решение:
 
-   vagrant@vagrant:~$ sudo -i
+   vagrant@vagrant:$ sudo -i
    root@vagrant:~# gzip -t /tmp/new/test.gz && echo $?
    0
 
