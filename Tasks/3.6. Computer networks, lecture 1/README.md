@@ -12,7 +12,8 @@
       
       В ответе укажите полученный HTTP код, что он означает?
 
-   Решение:
+   Решение: HTTP/1.1 301 Moved Permanently - это код перенаправления. Означает, что запрошенный ресурс был 
+                         перемещён в URL, указанный в заголовке Location: https://stackoverflow.com/questions.
 
    vagrant@vagrant:$ telnet stackoverflow.com 80
    Trying 151.101.129.69...
@@ -37,12 +38,10 @@
    X-Timer: S1658412458.431450,VS0,VE88
    Vary: Fastly-SSL
    X-DNS-Prefetch-Control: off
-   Set-Cookie: prov=3c95a43b-e735-b556-8ff1-fb4fff7416cb; domain=.stackoverflow.com; expires=Fri, 01-Jan-2055 00:00:00 GMT; path=/; HttpOnly
+   Set-Cookie: prov=3c95a43b-e735-b556-8ff1-fb4fff7416cb; domain=.stackoverflow.com;
+   expires=Fri, 01-Jan-2055 00:00:00 GMT; path=/; HttpOnly
    
    Connection closed by foreign host.
-   
-   HTTP/1.1 301 Moved Permanently - это код перенаправления. Означает, что запрошенный ресурс был перемещён в URL,
-                                    указанный в заголовке Location: https://stackoverflow.com/questions.
    
    2. Повторите задание 1 в браузере, используя консоль разработчика F12.
        
@@ -62,7 +61,8 @@
    Cross-Origin-Resource-Policy: Cross-Origin
    Location: https://stackoverflow.com/
    Non-Authoritative-Reason: HSTS
-   Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9
+   Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;
+   q=0.8,application/signed-exchange;v=b3;q=0.9
    Upgrade-Insecure-Requests: 1
    User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36
    
@@ -150,7 +150,7 @@
    7. AS???    80.81.193.108                                                0.0%    25   63.8  80.5  62.3 155.6  29.3
    8. AS15169  108.170.251.193                                              0.0%    25   64.8  75.1  62.9 144.7  24.9
    9. AS15169  142.250.46.245                                               0.0%    25   65.4  74.3  64.5 144.8  22.6
-   10. AS15169  8.8.8.8                                                      0.0%    25   63.8  77.2  62.9 147.8  26.3               
+  10. AS15169  8.8.8.8                                                      0.0%    25   63.8  77.2  62.9 147.8  26.3               
 
 
    7. Какие DNS сервера отвечают за доменное имя dns.google? Какие A записи? воспользуйтесь утилитой dig.
