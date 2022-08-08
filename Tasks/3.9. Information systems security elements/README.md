@@ -247,21 +247,21 @@
    vagrant@vagrant:$ ssh vagrant@10.0.2.2
    Welcome to Ubuntu 21.10 (GNU/Linux 5.13.0-22-generic x86_64)
 
-  * Documentation:  https://help.ubuntu.com
-  * Management:     https://landscape.canonical.com
-  * Support:        https://ubuntu.com/advantage
+   * Documentation:  https://help.ubuntu.com
+   * Management:     https://landscape.canonical.com
+   * Support:        https://ubuntu.com/advantage
 
-  System information as of Sat Jul 26 03:12:03 PM UTC 2022
+   System information as of Sat Jul 26 03:12:03 PM UTC 2022
 
-  System load:  0.0                Processes:             113
-  Usage of /:   11.6% of 30.83GB   Users logged in:       1
-  Memory usage: 20%                IPv4 address for eth0: 10.0.2.15
-  Swap usage:   0%                 IPv4 address for eth1: 10.0.2.2
+   System load:  0.0                Processes:             113
+   Usage of /:   11.6% of 30.83GB   Users logged in:       1
+   Memory usage: 20%                IPv4 address for eth0: 10.0.2.15
+   Swap usage:   0%                 IPv4 address for eth1: 10.0.2.2
 
 
-  This system is built by the Bento project by Chef Software
-  More information can be found at https://github.com/chef/bento
-  Last login: Sat Jul 26 14:26:12 2022 from 10.0.2.5
+   This system is built by the Bento project by Chef Software
+   More information can be found at https://github.com/chef/bento
+   Last login: Sat Jul 26 14:26:12 2022 from 10.0.2.5
   
    6. Переименуйте файлы ключей из задания 5. Настройте файл конфигурации SSH клиента,
       так чтобы вход на удаленный сервер осуществлялся по имени сервера.
