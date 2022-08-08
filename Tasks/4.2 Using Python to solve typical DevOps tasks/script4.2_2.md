@@ -1,3 +1,4 @@
+
 vagrant@vagrant:~$ ./script4.2_2.py
 .gitignore
 .idea/.gitignore
