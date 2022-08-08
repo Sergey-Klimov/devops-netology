@@ -55,7 +55,7 @@ for result in result_os.split('\n'):
 
 ### Вывод скрипта при запуске при тестировании:
 ```
-
+https://raw.githubusercontent.com/Sergey-Klimov/devops-netology/main/Tasks/4.2%20Using%20Python%20to%20solve%20typical%20DevOps%20tasks/script4.2_2.md
 ```
 
 ## Обязательная задача 3
