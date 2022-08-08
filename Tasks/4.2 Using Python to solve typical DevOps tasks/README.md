@@ -55,9 +55,10 @@ for result in result_os.split('\n'):
 
 ### Вывод скрипта при запуске при тестировании:
 ```
-vagrant@vagrant:~$ ./script4.2_2.py
-.gitignore
-.idea/.gitignore
+# vagrant@vagrant:~$ ./script4.2_2.py
+
+# .gitignore
+# .idea/.gitignore
 .idea/New.iml
 .idea/misc.xml
 .idea/modules.xml
