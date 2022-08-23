@@ -8,7 +8,7 @@
         "elements" :[
             { "name" : "first",
             "type" : "server",
-            "ip" : 7175 
+            "ip" : 7175 #тут должен быть адрес, например: "71.78.22.40"
             }
             { "name" : "second",
             "type" : "proxy",
