@@ -10,6 +10,19 @@
    
    Решение:
 ```
+   vagrant@vagrant:~/data$ packer build centos-7-base.json
+   yandex: output will be in this color.
+
+   ==> yandex: Creating temporary RSA SSH key for instance...
+   ==> yandex: Using as source image: fd88d14a6790do254kj7 (name: "centos-7-v20220620", family: "centos-7")
+   ==> yandex: Use provided subnet id e9b69204bf3978jdgt44
+   ==> yandex: Creating disk...
+   ==> yandex: Creating instance...
+   .
+   .
+   .
+   .
+   .
    Build 'yandex' finished after 5 minutes 40 seconds.
    
    ==> Wait completed after 5 minutes 40 seconds
