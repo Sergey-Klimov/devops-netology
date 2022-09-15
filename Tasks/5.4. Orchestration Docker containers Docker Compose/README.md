@@ -37,12 +37,13 @@
    | fd86c46j5prdok9em4mr | centos-7-base | centos | f2euv1kekdgvc0jrpaet | READY  |
    +----------------------+---------------+--------+----------------------+--------+
    
+  
+```
    Скриншот страницы: 
    
    https://github.com/Sergey-Klimov/devops-netology/blob/main/Tasks/5.4.%20Orchestration%20Docker%20containers%20Docker%20Compose/5.4%20task%201.png
-   
-```
-   
+    
+
    Задача 2
 
    
