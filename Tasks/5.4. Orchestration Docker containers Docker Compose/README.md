@@ -54,3 +54,4 @@
    
    Решение:
    
+https://github.com/Sergey-Klimov/devops-netology/blob/main/Tasks/5.4.%20Orchestration%20Docker%20containers%20Docker%20Compose/node01.png
