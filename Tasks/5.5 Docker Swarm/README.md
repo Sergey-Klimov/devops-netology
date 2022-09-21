@@ -61,7 +61,7 @@ n1b4rm00hcfl   swarm_monitoring_node-exporter      global       6/6        stefa
 v4su8g89h1j4   swarm_monitoring_prometheus         replicated   1/1        stefanprodan/swarmprom-prometheus:v2.5.0
 sus2svsm7ygt   swarm_monitoring_unsee              replicated   1/1        cloudflare/unsee:v0.8.0
 ```   
-Скриншот страницы cloud.yandex:
+Скриншот страницы cloud.yandex: https://github.com/Sergey-Klimov/devops-netology/blob/main/Tasks/5.5%20Docker%20Swarm/console.cloud.yandex.folders.png
 
    Задача 3
 
@@ -85,7 +85,7 @@ n1b4rm00hcfl   swarm_monitoring_node-exporter      global       6/6        stefa
 v4su8g89h1j4   swarm_monitoring_prometheus         replicated   1/1        stefanprodan/swarmprom-prometheus:v2.5.0
 sus2svsm7ygt   swarm_monitoring_unsee              replicated   1/1        cloudflare/unsee:v0.8.0
 ```
-Скриншот страницы Grafana:
+Скриншот страницы Grafana: https://github.com/Sergey-Klimov/devops-netology/blob/main/Tasks/5.5%20Docker%20Swarm/Grafana.png
 
    Задача 4 (*)
 
