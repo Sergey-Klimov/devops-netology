@@ -7,7 +7,7 @@
 Приведите получившуюся команду или docker-compose манифест.
    
 **Решение:**
-```bash  
+```bash
 vagrant@vagrant:~$ cat docker-compose.yml
 version: '3.5'
 services:
