@@ -125,7 +125,7 @@ Access method: heap
 
 SQL-запрос для выдачи списка пользователей с правами над таблицами test_db
 
-```bash
+```cql
 test_db=# SELECT table_name, array_agg(privilege_type), grantee
 FROM information_schema.table_privileges
 WHERE table_name = 'orders' OR table_name = 'clients'
@@ -146,7 +146,7 @@ GROUP BY table_name, grantee;
 ```
 
 
-#### Задача 3
+## Задача 3
 
 Используя SQL синтаксис - наполните таблицы следующими тестовыми данными:
 
@@ -176,10 +176,9 @@ GROUP BY table_name, grantee;
     - запросы 
     - результаты их выполнения.
   
-   **Решение:**
+**Решение:**
 
-   Думаю, что не могут, так как это два противоположных принципа. В основе BASE - доступность данных даже в ущерб
-   согласованности. ACID же основывается на согласованности данных и надежности в случае сбоев.
+   
  
 #### Задача 4
 
