@@ -178,8 +178,40 @@ GROUP BY table_name, grantee;
   
 **Решение:**
 
-   
- 
+```sql
+INSERT INTO orders (наименование, цена )
+VALUES 
+    ('Шоколад', '10'),
+    ('Принтер', '3000'),
+    ('Книга', '500'),
+    ('Монитор', '7000'),
+    ('Гитара', '4000')
+;
+```   
+```sql
+INSERT INTO clients ("фамилия", "страна проживания")
+VALUES 
+    ('Иванов Иван Иванович', 'USA'),
+    ('Петров Петр Петрович', 'Canada'),
+    ('Иоганн Себастьян Бах', 'Japan'),
+    ('Ронни Джеймс Дио', 'Russia'),
+    ('Ritchie Blackmore', 'Russia')
+;
+```
+
+```sql
+SELECT 'orders' AS name_table,  COUNT(*) AS number_rows FROM orders
+UNION ALL
+SELECT 'clients' AS name_table,  COUNT(*) AS number_rows  FROM clients;
+```
+
+```bash
+ name_table | number_rows
+------------+-------------
+ orders     |           5
+ clients    |           5
+(2 rows)
+```
 #### Задача 4
 
    Вам дали задачу написать системное решение, основой которого бы послужили:
