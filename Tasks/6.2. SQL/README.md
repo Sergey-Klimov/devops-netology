@@ -212,20 +212,155 @@ SELECT 'clients' AS name_table,  COUNT(*) AS number_rows  FROM clients;
  clients    |           5
 (2 rows)
 ```
-#### Задача 4
+## Задача 4
 
-   Вам дали задачу написать системное решение, основой которого бы послужили:
+Часть пользователей из таблицы clients решили оформить заказы из таблицы orders.
 
-   фиксация некоторых значений с временем жизни
-   реакция на истечение таймаута
+Используя foreign keys свяжите записи из таблиц, согласно таблице:
 
-   Вы слышали о key-value хранилище, которое имеет механизм Pub/Sub. Что это за система? Какие минусы выбора данной системы?
+|ФИО|Заказ|
+|------------|----|
+|Иванов Иван Иванович| Книга |
+|Петров Петр Петрович| Монитор |
+|Иоганн Себастьян Бах| Гитара |
+
+Приведите SQL-запросы для выполнения данных операций.
+
+Приведите SQL-запрос для выдачи всех пользователей, которые совершили заказ, а также вывод данного запроса.   
    
-   **Решение:**
+**Решение:**
 
-   Key-value хранилище с механизмом pub/sub - это Redis.
-   К его недостаткам можно отнести:
+```sql
+UPDATE clients SET "заказ"=3 WHERE id=1; 
+UPDATE clients SET "заказ"=4 WHERE id=2; 
+UPDATE clients SET "заказ"=5 WHERE id=3; 
+```
+```sql
+test_db=# SELECT "фамилия","заказ",orders."наименование"
+FROM clients
+INNER JOIN orders ON "заказ"=orders."id";
+       фамилия        | заказ | наименование
+----------------------+-------+--------------
+ Иванов Иван Иванович |     3 | Книга
+ Петров Петр Петрович |     4 | Монитор
+ Иоганн Себастьян Бах |     5 | Гитара
+```
 
-   Хранение данных в ОЗУ. То есть размер базы ограничен памятью и есть проблемы с надежностью хранения данных
-   Не поддерживает SQL
-   Нет ролевой модели доступов.
+## Задача 5
+
+Получите полную информацию по выполнению запроса выдачи всех пользователей из задачи 4 
+(используя директиву EXPLAIN).
+
+Приведите получившийся результат и объясните что значат полученные значения.
+
+**Решение:**
+
+```sql
+test_db=# EXPLAIN SELECT * FROM clients
+WHERE "заказ" IS NOT null;
+                        QUERY PLAN
+-----------------------------------------------------------
+ Seq Scan on clients  (cost=0.00..18.10 rows=806 width=72)
+   Filter: ("заказ" IS NOT NULL)
+```
+Читаем последовательно данные из таблицы `clients` \
+Стоимость получения первого значения `0.00`. \
+Стоимость получения всех строк `18.10`. \
+Приблизительное количество проверенных строк `806` \
+Средний размер каждой строки
+в байтах составил `72` \
+Используется фильтр `"заказ" IS NOT NULL`
+
+
+## Задача 6
+
+Создайте бэкап БД test_db и поместите его в volume, предназначенный для бэкапов (см. Задачу 1).
+```bash
+pg_dump -U postgres -F t test_db > /data/backup/postgres/test_db.tar
+```
+Остановите контейнер с PostgreSQL (но не удаляйте volumes).
+
+```bash
+vagrant@vagrant:~$ docker ps
+CONTAINER ID   IMAGE            COMMAND                  CREATED       STATUS             PORTS                                        NAMES
+c15b53fd9632   postgres:12      "docker-entrypoint.s…"   3 hours ago   Up About an hour   0.0.0.0:5432->5432/tcp, :::5432->5432/tcp    postgresql-postgres-1
+vagrant@vagrant:~$ docker stop postgresql-postgres-1
+postgresql-postgres-1
+vagrant@vagrant:~$ docker ps -a
+CONTAINER ID   IMAGE            COMMAND                  CREATED       STATUS                     PORTS                                        NAMES
+c15b53fd9632   postgres:12      "docker-entrypoint.s…"   3 hours ago   Exited (0) 44 seconds ago                                                postgresql-postgres-1
+```
+Поднимите новый пустой контейнер с PostgreSQL.
+```bash
+vagrant@vagrant:~/docker/new$ docker ps
+CONTAINER ID   IMAGE            COMMAND                  CREATED          STATUS          PORTS                                        NAMES
+4476595b0f8d   postgres:12      "docker-entrypoint.s…"   17 seconds ago   Up 14 seconds   0.0.0.0:5432->5432/tcp, :::5432->5432/tcp    new-postgres-1
+```
+Восстановите БД test_db в новом контейнере.
+Приведите список операций, который вы применяли для бэкапа данных и восстановления. 
+```bash
+postgres=# CREATE USER "test-admin-user" WITH LOGIN;
+CREATE ROLE
+postgres=# CREATE USER "test-simple-user" WITH LOGIN;
+CREATE ROLE
+root@4476595b0f8d:/# pg_restore -U postgres --verbose -C -d postgres /data/backup/postgres/test_db.tar
+pg_restore: connecting to database for restore
+pg_restore: creating DATABASE "test_db"
+pg_restore: connecting to new database "test_db"
+pg_restore: creating TABLE "public.clients"
+pg_restore: creating SEQUENCE "public.clients_id_seq"
+pg_restore: creating SEQUENCE OWNED BY "public.clients_id_seq"
+pg_restore: creating TABLE "public.orders"
+pg_restore: creating SEQUENCE "public.orders_id_seq"
+pg_restore: creating SEQUENCE OWNED BY "public.orders_id_seq"
+pg_restore: creating DEFAULT "public.clients id"
+pg_restore: creating DEFAULT "public.orders id"
+pg_restore: processing data for table "public.clients"
+pg_restore: processing data for table "public.orders"
+pg_restore: executing SEQUENCE SET clients_id_seq
+pg_restore: executing SEQUENCE SET orders_id_seq
+pg_restore: creating CONSTRAINT "public.clients clients_pkey"
+pg_restore: creating CONSTRAINT "public.orders orders_pkey"
+pg_restore: creating INDEX "public.clients_страна проживания_idx"
+pg_restore: creating FK CONSTRAINT "public.clients clients_заказ_fkey"
+pg_restore: creating ACL "public.TABLE clients"
+pg_restore: creating ACL "public.TABLE orders"
+postgres=# \l
+                                 List of databases
+   Name    |  Owner   | Encoding |  Collate   |   Ctype    |   Access privileges
+-----------+----------+----------+------------+------------+-----------------------
+ postgres  | postgres | UTF8     | en_US.utf8 | en_US.utf8 |
+ template0 | postgres | UTF8     | en_US.utf8 | en_US.utf8 | =c/postgres          +
+           |          |          |            |            | postgres=CTc/postgres
+ template1 | postgres | UTF8     | en_US.utf8 | en_US.utf8 | =c/postgres          +
+           |          |          |            |            | postgres=CTc/postgres
+ test_db   | postgres | UTF8     | en_US.utf8 | en_US.utf8 |
+ 
+postgres=# \c test_db
+You are now connected to database "test_db" as user "postgres".
+test_db=# \d orders
+                               Table "public.orders"
+    Column    |  Type   | Collation | Nullable |              Default
+--------------+---------+-----------+----------+------------------------------------
+ id           | integer |           | not null | nextval('orders_id_seq'::regclass)
+ наименование | text    |           |          |
+ цена         | integer |           |          |
+Indexes:
+    "orders_pkey" PRIMARY KEY, btree (id)
+Referenced by:
+    TABLE "clients" CONSTRAINT "clients_заказ_fkey" FOREIGN KEY ("заказ") REFERENCES orders(id)
+test_db=# \d clients
+                                  Table "public.clients"
+      Column       |  Type   | Collation | Nullable |               Default
+-------------------+---------+-----------+----------+-------------------------------------
+ id                | integer |           | not null | nextval('clients_id_seq'::regclass)
+ фамилия           | text    |           |          |
+ страна проживания | text    |           |          |
+ заказ             | integer |           |          |
+Indexes:
+    "clients_pkey" PRIMARY KEY, btree (id)
+    "clients_страна проживания_idx" btree ("страна проживания")
+Foreign-key constraints:
+    "clients_заказ_fkey" FOREIGN KEY ("заказ") REFERENCES orders(id)
+ 
+```
