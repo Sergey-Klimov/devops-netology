@@ -14,14 +14,17 @@ services:
   postgres:
     image: postgres:12
     environment:
-      - POSTGRES_PASSWORD=postgres
-      - POSTGRES_USER=postgres
-    volumes:
-      - ./data:/var/lib/postgresql/data
-      - ./backup:/data/backup/postgres
+      PGDATA: /var/lib/postgresql/data/some_name/
+      POSTGRES_HOST_AUTH_METHOD: "trust"
     ports:
-      - "5432:5432"
+    - "5432"
     restart: always
+    volumes:
+    - /etc/postgresql/12/postgresql.conf:/var/lib/postgresql/data/postgresql.conf
+    - db_data:/var/lib/postgresql/data
+    - ./backup:/data/backup/postgres
+volumes:
+  db_data:
 vagrant@vagrant:~$ docker compose ps
 NAME                 COMMAND                  SERVICE             STATUS              PORTS
 
