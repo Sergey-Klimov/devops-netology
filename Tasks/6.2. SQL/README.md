@@ -27,8 +27,12 @@ volumes:
   db_data:
 vagrant@vagrant:~$ docker compose ps
 NAME                 COMMAND                  SERVICE             STATUS              PORTS
-
 vagrant-postgres-1   "docker-entrypoint.s…"   postgres            running             0.0.0.0:5432->5432/tcp, :::5432->5432/tcp
+
+
+vagrant@vagrant:~$ docker ps
+CONTAINER ID   IMAGE         COMMAND                  CREATED          STATUS          PORTS                                         NAMES
+76d4406c0b35   postgres:12   "docker-entrypoint.s…"   22 minutes ago   Up 22 minutes   0.0.0.0:49163->5432/tcp, :::49163->5432/tcp   vagrant-postgres-1
 ```
 
 ## Задача 2
@@ -239,14 +243,15 @@ UPDATE clients SET "заказ"=4 WHERE id=2;
 UPDATE clients SET "заказ"=5 WHERE id=3; 
 ```
 ```sql
-test_db=# SELECT "фамилия","заказ",orders."наименование"
-FROM clients
-INNER JOIN orders ON "заказ"=orders."id";
+est_db=# SELECT "фамилия","заказ",orders."наименование"
+test_db-# FROM clients
+test_db-# INNER JOIN orders ON "заказ"=orders."id";
        фамилия        | заказ | наименование
 ----------------------+-------+--------------
  Иванов Иван Иванович |     3 | Книга
  Петров Петр Петрович |     4 | Монитор
  Иоганн Себастьян Бах |     5 | Гитара
+(3 rows)
 ```
 
 ## Задача 5
@@ -260,11 +265,12 @@ INNER JOIN orders ON "заказ"=orders."id";
 
 ```sql
 test_db=# EXPLAIN SELECT * FROM clients
-WHERE "заказ" IS NOT null;
+test_db-# WHERE "заказ" IS NOT null;
                         QUERY PLAN
 -----------------------------------------------------------
  Seq Scan on clients  (cost=0.00..18.10 rows=806 width=72)
    Filter: ("заказ" IS NOT NULL)
+(2 rows)
 ```
 Читаем последовательно данные из таблицы `clients` \
 Стоимость получения первого значения `0.00`. \
@@ -285,28 +291,46 @@ pg_dump -U postgres -F t test_db > /data/backup/postgres/test_db.tar
 
 ```bash
 vagrant@vagrant:~$ docker ps
-CONTAINER ID   IMAGE            COMMAND                  CREATED       STATUS             PORTS                                        NAMES
-c15b53fd9632   postgres:12      "docker-entrypoint.s…"   3 hours ago   Up About an hour   0.0.0.0:5432->5432/tcp, :::5432->5432/tcp    postgresql-postgres-1
-vagrant@vagrant:~$ docker stop postgresql-postgres-1
-postgresql-postgres-1
+CONTAINER ID   IMAGE         COMMAND                  CREATED          STATUS          PORTS                                         NAMES
+76d4406c0b35   postgres:12   "docker-entrypoint.s…"   52 minutes ago   Up 52 minutes   0.0.0.0:49163->5432/tcp, :::49163->5432/tcp   vagrant-postgres-1
+vagrant@vagrant:~$ docker stop vagrant-postgres-1
+vagrant-postgres-1
 vagrant@vagrant:~$ docker ps -a
-CONTAINER ID   IMAGE            COMMAND                  CREATED       STATUS                     PORTS                                        NAMES
-c15b53fd9632   postgres:12      "docker-entrypoint.s…"   3 hours ago   Exited (0) 44 seconds ago                                                postgresql-postgres-1
+CONTAINER ID   IMAGE         COMMAND                  CREATED          STATUS                     PORTS     NAMES
+76d4406c0b35   postgres:12   "docker-entrypoint.s…"   54 minutes ago   Exited (0) 6 seconds ago             vagrant-postgres-1
 ```
 Поднимите новый пустой контейнер с PostgreSQL.
 ```bash
-vagrant@vagrant:~/docker/new$ docker ps
-CONTAINER ID   IMAGE            COMMAND                  CREATED          STATUS          PORTS                                        NAMES
-4476595b0f8d   postgres:12      "docker-entrypoint.s…"   17 seconds ago   Up 14 seconds   0.0.0.0:5432->5432/tcp, :::5432->5432/tcp    new-postgres-1
+vagrant@vagrant:~/test_db$ docker compose up -d
+[+] Running 3/3
+ ⠿ Network test_db_default       Created                                                                                                                                                        0.1s
+ ⠿ Volume "test_db_db_data"      Created                                                                                                                                                        0.0s
+ ⠿ Container test_db-postgres-1  Started                                                                                                                                                        1.2s
+vagrant@vagrant:~/test_db$ docker compose ps -a
+NAME                 COMMAND                  SERVICE             STATUS              PORTS
+test_db-postgres-1   "docker-entrypoint.s…"   postgres            running             0.0.0.0:49164->5432/tcp, :::49164->5432/tcp
+
+vagrant@vagrant:~/test_db$ docker  ps
+CONTAINER ID   IMAGE         COMMAND                  CREATED              STATUS              PORTS                                         NAMES
+b9f53c4b249e   postgres:12   "docker-entrypoint.s…"   About a minute ago   Up About a minute   0.0.0.0:49164->5432/tcp, :::49164->5432/tcp   test_db-postgres-1
 ```
 Восстановите БД test_db в новом контейнере.
 Приведите список операций, который вы применяли для бэкапа данных и восстановления. 
 ```bash
+vagrant@vagrant:~/test_db$ psql -h localhost -p 49164 -U postgres -W
+Password:
+psql (12.12 (Ubuntu 12.12-0ubuntu0.20.04.1))
+Type "help" for help.
 postgres=# CREATE USER "test-admin-user" WITH LOGIN;
 CREATE ROLE
 postgres=# CREATE USER "test-simple-user" WITH LOGIN;
 CREATE ROLE
-root@4476595b0f8d:/# pg_restore -U postgres --verbose -C -d postgres /data/backup/postgres/test_db.tar
+postgres=# \q
+vagrant@vagrant:~/test_db$ docker ps
+CONTAINER ID   IMAGE         COMMAND                  CREATED          STATUS          PORTS                                         NAMES
+b9f53c4b249e   postgres:12   "docker-entrypoint.s…"   19 minutes ago   Up 19 minutes   0.0.0.0:49164->5432/tcp, :::49164->5432/tcp   test_db-postgres-1
+vagrant@vagrant:~/test_db$ docker exec -it test_db-postgres-1 bash
+root@b9f53c4b249e:/# pg_restore -U postgres --verbose -C -d postgres /data/backup/postgres/test_db.tar
 pg_restore: connecting to database for restore
 pg_restore: creating DATABASE "test_db"
 pg_restore: connecting to new database "test_db"
