@@ -212,3 +212,118 @@ mysql> SELECT count(*) FROM orders WHERE price > 300;
 
 Используя таблицу INFORMATION_SCHEMA.USER_ATTRIBUTES получите данные по пользователю `test` и 
 **приведите в ответе к задаче**.
+
+**Решение:**
+
+```sql
+CREATE USER 'test'@'localhost'
+IDENTIFIED WITH mysql_native_password BY 'test-pass' 
+WITH MAX_QUERIES_PER_HOUR 100
+PASSWORD EXPIRE INTERVAL 180 DAY
+FAILED_LOGIN_ATTEMPTS 3
+ATTRIBUTE '{"lname": "Pretty", "fname":"James"}';
+
+mysql> GRANT SELECT ON test_db.* TO 'test'@'localhost';
+Query OK, 0 rows affected, 1 warning (0.03 sec)
+
+mysql> select * from information_schema.user_attributes where user='test';
++------+-----------+---------------------------------------+
+| USER | HOST      | ATTRIBUTE                             |
++------+-----------+---------------------------------------+
+| test | localhost | {"lname": "Pretty", "fname": "James"} |
++------+-----------+---------------------------------------+
+1 row in set (0.01 sec)
+```
+
+## Задача 3
+
+Установите профилирование `SET profiling = 1`.
+Изучите вывод профилирования команд `SHOW PROFILES;`.
+
+Исследуйте, какой `engine` используется в таблице БД `test_db` и **приведите в ответе**.
+
+Измените `engine` и **приведите время выполнения и запрос на изменения из профайлера в ответе**:
+- на `MyISAM`
+- на `InnoDB`
+
+**Решение:**
+
+```sql
+mysql> SET profiling = 1;
+Query OK, 0 rows affected, 1 warning (0.01 sec)
+
+mysql> show profiles;
++----------+------------+-------------------+
+| Query_ID | Duration   | Query             |
++----------+------------+-------------------+
+|        1 | 0.00039300 | SELECT DATABASE() |
+|        2 | 0.00022700 | SET profiling = 1 |
++----------+------------+-------------------+
+2 rows in set, 1 warning (0.00 sec)
+```
+
+- Исследуйте, какой `engine` используется в таблице БД `test_db` и **приведите в ответе**.
+
+```sql
+mysql> SELECT TABLE_NAME,
+    -> ENGINE
+    -> FROM   information_schema.TABLES
+    -> WHERE  TABLE_SCHEMA = 'test_db';
++------------+--------+
+| TABLE_NAME | ENGINE |
++------------+--------+
+| orders     | InnoDB |
++------------+--------+
+1 row in set (0.01 sec)
+```
+
+- Измените `engine` и **приведите время выполнения и запрос на изменения из профайлера в ответе**:
+  на `MyISAM`
+  на `InnoDB`
+
+```sql
+mysql> alter table orders engine = myisam;
+Query OK, 5 rows affected (0.10 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql> alter table orders engine = innodb;
+Query OK, 5 rows affected (0.13 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+```
+
+## Задача 4
+
+Изучите файл `my.cnf` в директории /etc/mysql.
+
+Измените его согласно ТЗ (д вижок InnoDB):
+- Скорость IO важнее сохранности данных
+- Нужна компрессия таблиц для экономии места на диске
+- Размер буффера с незакомиченными транзакциями 1 Мб
+- Буффер кеширования 30% от ОЗУ
+- Размер файла логов операций 100 Мб
+
+Приведите в ответе измененный файл `my.cnf`.
+
+**Решение:**
+
+У меня файл `my.cnf` находиться в каталоге /etc/my.cnf
+
+```text
+bash-4.4# cat my.cnf
+[mysqld]
+skip-host-cache
+skip-name-resolve
+datadir=/var/lib/mysql
+socket=/var/run/mysqld/mysqld.sock
+secure-file-priv=/var/lib/mysql-files
+user=mysql
+pid-file=/var/run/mysqld/mysqld.pid
+[client]
+socket=/var/run/mysqld/mysqld.sock
+!includedir /etc/mysql/conf.d/
+innodb_flush_method = O_DSYN
+innodb_file_per_table = 1
+innodb_log_buffer_size = 1M
+innodb_buffer_pool_size = 2G
+innodb_log_file_size = 100M
+```
