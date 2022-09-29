@@ -195,7 +195,7 @@ mysql> SELECT count(*) FROM orders WHERE price > 300;
 1 row in set (0.01 sec)
 
 ```
-# Ответ: 1
+## Ответ: 1
 
 ## Задача 2
 
