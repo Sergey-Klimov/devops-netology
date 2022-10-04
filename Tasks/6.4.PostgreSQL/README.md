@@ -308,17 +308,6 @@ DO INSTEAD
 ```sql
 INSERT INTO orders
 SELECT * FROM orders_old;
-
-test_database=# \d
-              List of relations
- Schema |     Name      |   Type   |  Owner
---------+---------------+----------+----------
- public | orders        | table    | postgres
- public | orders_1      | table    | postgres
- public | orders_2      | table    | postgres
- public | orders_id_seq | sequence | postgres
- public | orders_old    | table    | postgres
-(5 rows)
 ```
 
 Смотрим, что получилось:
