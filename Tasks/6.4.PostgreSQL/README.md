@@ -322,6 +322,7 @@ test_database=# \d
  public | orders_2      | table    | postgres
  public | orders_id_seq | sequence | postgres
  public | orders_old    | table    | postgres
+
 test_database=# TABLE orders_1;
  id |       title        | price 
 ----+--------------------+-------
@@ -385,6 +386,7 @@ CREATE TABLE orders_2 PARTITION OF orders
 
 ```bash
 test_database=# \q
+
 root@fb64993d23b1:/# pg_dump -U postgres -v -f /data/backup/postgres/test_database.sql
 pg_dump: last built-in OID is 16383
 pg_dump: reading extensions
