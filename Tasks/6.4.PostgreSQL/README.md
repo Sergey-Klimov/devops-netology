@@ -17,7 +17,6 @@
 
 **Решение:**
 
-
 ```bash
 vagrant@vagrant:~$ cat docker-compose.yml
 version: '3.5'
@@ -28,13 +27,12 @@ services:
       - POSTGRES_PASSWORD=postgres
       - POSTGRES_USER=postgres
     volumes:
-      - ./data:/var/lib/postgresql/data
+      - ./data:/var/lib/lib/postgresql
       - ./backup:/data/backup/postgres
     ports:
       - "5432:5432"
-    restart: always    
-  
-```
+    restart: always
+ ```
 
 - вывода списка БД
 
