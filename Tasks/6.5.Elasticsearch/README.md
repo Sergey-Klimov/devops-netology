@@ -53,10 +53,10 @@ RUN cd /opt && \
     useradd -c "elasticsearch" -g elasticsearch elasticsearch &&\
     yum update -y && yum -y install perl-Digest-SHA && \
     #shasum -a 512 -c elasticsearch-8.4.3-linux-x86_64.tar.gz.sha512 && \
-    #tar -xzf elasticsearch-8.4.3-linux-x86_64.tar.gz && \
-    #cd elasticsearch-8.4.3/ && \
+    tar -xzf elasticsearch-8.4.3-linux-x86_64.tar.gz && \
+    cd elasticsearch-8.4.3/ && \
     mkdir /var/lib/data && chmod -R 777 /var/lib/data && \
-    #chown -R elasticsearch:elasticsearch /opt/elasticsearch-8.4.3 && \
+    chown -R elasticsearch:elasticsearch /opt/elasticsearch-8.4.3 && \
     yum clean all
 USER elasticsearch
 WORKDIR /opt/elasticsearch-8.4.3/
