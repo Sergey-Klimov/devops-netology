@@ -33,36 +33,46 @@
 
 **Решение:**
 
+```bash
+vagrant@vagrant:~/data$ ls -la
+total 553045
+drwxrwxrwx 1 vagrant vagrant         0 Oct 10 18:49 .
+drwxr-xr-x 9 vagrant vagrant      4096 Oct  9 13:58 ..
+-rwxrwxrwx 1 vagrant vagrant       748 Oct 10 18:21 Dockerfile
+-rwxrwxrwx 1 vagrant vagrant 566286512 Oct  8 21:41 elasticsearch-8.4.3-linux-x86_64.tar.gz
+-rwxrwxrwx 1 vagrant vagrant        80 Oct  8 23:09 elasticsearch.yml
+ ```
 vagrant@vagrant:~/data$ cat Dockerfile
 
 ```dockerfile
-FROM centos:centos7
-ENV ES_PKG_NAME elasticsearch-7.17.6
-RUN groupadd -g 1000 elasticsearch && useradd elasticsearch -u 1000 -g 1000 \
-RUN yum makecache && \
-    yum -y install wget \
-    yum -y install perl-Digest-SHA
-
-RUN \
-  cd / && \
-  wget https://artifacts.elastic.co/downloads/elasticsearch/$ES_PKG_NAME-linux-x86_64.tar.gz && \
-  wget https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-7.17.6-linux-x86_64.tar.gz.sha512 && \
-  shasum -a 512 -c elasticsearch-7.17.6-linux-x86_64.tar.gz.sha512 && \
-  tar -xzf $ES_PKG_NAME-linux-x86_64.tar.gz && \
-  rm -f $ES_PKG_NAME-linux-x85_64.tar.gz && \
-  mv /$ES_PKG_NAME /elasticsearch
-RUN mkdir /var/lib/logs /var/lib/data
-COPY elasticsearch.yml /elasticsearch/config
-RUN chmod -R 777 /elasticsearch && \
-    chmod -R 777 /var/lib/logs && \
-    chmod -R 777 /var/lib/data
+FROM centos:7
+COPY elasticsearch-8.4.3-linux-x86_64.tar.gz   /opt
+#COPY elasticsearch-8.4.3-linux-x86_64.tar.gz.sha512  /opt
+RUN cd /opt && \
+    groupadd elasticsearch && \
+    useradd -c "elasticsearch" -g elasticsearch elasticsearch &&\
+    yum update -y && yum -y install perl-Digest-SHA && \
+    #shasum -a 512 -c elasticsearch-8.4.3-linux-x86_64.tar.gz.sha512 && \
+    tar -xzf elasticsearch-8.4.3-linux-x86_64.tar.gz && \
+    cd elasticsearch-8.4.3/ && \
+    mkdir /var/lib/data && chmod -R 777 /var/lib/data && \
+    chown -R elasticsearch:elasticsearch /opt/elasticsearch-8.4.3 && \
+    yum clean all
 USER elasticsearch
-CMD ["/elasticsearch/bin/elasticsearch"]
-EXPOSE 9200
-EXPOSE 9300
+WORKDIR /opt/elasticsearch-8.4.3/
+COPY elasticsearch.yml  config/
+EXPOSE 9200 9300
+ENTRYPOINT ["bin/elasticsearch"]
 ```
 
-[elasticsearch.yml](https://github.com/Sergey-Klimov/devops-netology/blob/main/Tasks/6.5.Elasticsearch/elasticsearch.yml)
+vagrant@vagrant:~/data$ cat elasticsearch.yml
 
+```yaml
+node:
+  name: netology_test
+path:
+  data: /var/lib/data
+xpack.ml.enabled: false
+```
 
 [Ссылка на образ](https://hub.docker.com/repository/docker/sergeyklimov/elasticsearch)
