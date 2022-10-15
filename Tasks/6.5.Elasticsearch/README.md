@@ -36,32 +36,32 @@
 vagrant@vagrant:~/data$ cat Dockerfile
 
 ```dockerfile
-FROM centos:centos7
-ENV ES_PKG_NAME elasticsearch-7.17.6
-RUN groupadd -g 1000 elasticsearch && useradd elasticsearch -u 1000 -g 1000 \
-RUN yum makecache && \
-    yum -y install wget \
-    yum -y install perl-Digest-SHA
+FROM centos:7
+RUN cd /opt && \
+    groupadd elasticsearch && \
+    useradd -c "elasticsearch" -g elasticsearch elasticsearch &&\
+    yum update -y && yum -y install wget perl-Digest-SHA && \
+    wget https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-7.17.6-linux-x86_64.tar.gz &&\
+    wget https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-7.17.6-linux-x86_64.tar.gz.sha512 &&\
+    shasum -a 512 -c elasticsearch-7.17.6-linux-x86_64.tar.gz.sha512 &&\
+    tar -xzf elasticsearch-7.17.6-linux-x86_64.tar.gz &&\
+	rm elasticsearch-7.17.6-linux-x86_64.tar.gz elasticsearch-7.17.6-linux-x86_64.tar.gz.sha512 && \
+	mkdir /var/lib/data && chmod -R 777 /var/lib/data && \
+	chown -R elasticsearch:elasticsearch /opt/elasticsearch-7.17.6 && \
+	yum -y remove wget perl-Digest-SHA && \
+	yum clean all
 
-RUN \
-  cd / && \
-  wget https://artifacts.elastic.co/downloads/elasticsearch/$ES_PKG_NAME-linux-x86_64.tar.gz && \
-  wget https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-7.17.6-linux-x86_64.tar.gz.sha512 && \
-  shasum -a 512 -c elasticsearch-7.17.6-linux-x86_64.tar.gz.sha512 && \
-  tar -xzf $ES_PKG_NAME-linux-x86_64.tar.gz && \
-  rm -f $ES_PKG_NAME-linux-x85_64.tar.gz && \
-  mv /$ES_PKG_NAME /elasticsearch
-RUN mkdir /var/lib/logs /var/lib/data
 COPY elasticsearch.yml /elasticsearch/config
 RUN chmod -R 777 /elasticsearch && \
-    chmod -R 777 /var/lib/logs && \
     chmod -R 777 /var/lib/data
 USER elasticsearch
+
 CMD ["/elasticsearch/bin/elasticsearch"]
+
 EXPOSE 9200
 EXPOSE 9300
 ```
 
 [elasticsearch.yml](https://github.com/Sergey-Klimov/devops-netology/blame/main/Tasks/6.5.Elasticsearch/elasticsearch.yml)
 
-[Ссылка на образ](https://hub.docker.com/repository/docker/sergeyklimov/elasticsearch)
+[Ссылка на образ. Tag:7.17.6](https://hub.docker.com/repository/docker/sergeyklimov/elasticsearch)
