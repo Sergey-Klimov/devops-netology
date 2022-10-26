@@ -1,10 +1,10 @@
 provider "yandex" {
-  cloud_id  = "b1gu63j7mubuvbqi2nhs"
-  folder_id = "b1g238j6jo2h41vp196i"
+  cloud_id  = ""
+  folder_id = ""
   zone      = "ru-central1-a"
 }
 
-resource "yandex_compute_instance" "vm-1" {
+resource "yandex_compute_instance" "vm-01" {
   name = "terraform1"
 
   resources {
@@ -40,9 +40,9 @@ resource "yandex_vpc_subnet" "subnet-1" {
 }
 
 output "internal_ip_address_vm_1" {
-  value = yandex_compute_instance.vm-1.network_interface.0.ip_address
+  value = yandex_compute_instance.vm-01.network_interface.0.ip_address
 }
 
 output "external_ip_address_vm_1" {
-  value = yandex_compute_instance.vm-1.network_interface.0.nat_ip_address
+  value = yandex_compute_instance.vm-01.network_interface.0.nat_ip_address
 }
