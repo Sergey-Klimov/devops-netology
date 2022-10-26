@@ -44,7 +44,7 @@
 ---
 
 
-**Решение**
+**Решение:**
 
 Так как на AWS у меня нет возможности привязать не российскую банковскую карту, то задание выполнял в YC.
 
@@ -133,9 +133,6 @@ so that Terraform can guarantee to make the same selections by default when
 you run "terraform init" in the future.
 
 Terraform has been successfully initialized!
-
-vagrant@vagrant:~/terraform$ terraform validate
-Success! The configuration is valid.
 
 vagrant@vagrant:~/terraform$ terraform validate
 Success! The configuration is valid.
