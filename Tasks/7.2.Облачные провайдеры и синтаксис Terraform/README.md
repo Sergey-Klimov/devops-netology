@@ -51,3 +51,105 @@
 Конфигурационные файлы Terraform \
 [main.tf](./src/main.tf) \
 [versions.tf](./src/versions.tf)
+
+```console
+vagrant@vagrant:~$ curl -sSL https://storage.yandexcloud.net/yandexcloud-yc/install.sh | bash
+vagrant@vagrant:~$ yc -version
+Yandex Cloud CLI 0.97.0 linux/amd64
+
+vagrant@vagrant:~$ yc init
+Welcome! This command will take you through the configuration process.
+Pick desired action:
+ [1] Re-initialize this profile 'default' with new settings
+ [2] Create a new profile
+Please enter your numeric choice: 1
+.
+.
+.
+.
+vagrant@vagrant:~$ yc resource-manager cloud list
++----------------------+------------+----------------------+
+|          ID          |    NAME    |   ORGANIZATION ID    |
++----------------------+------------+----------------------+
+| b1g68do2k0bc9bhhraom | netologivm | bpfvh26u0v0g3f2rnple |
++----------------------+------------+----------------------+
+
+vagrant@vagrant:~$ yc resource-manager folder list
++----------------------+-----------+--------+--------+
+|          ID          |   NAME    | LABELS | STATUS |
++----------------------+-----------+--------+--------+
+| b1gavpp1ds7gdjdn4jkb | terraform |        | ACTIVE |
++----------------------+-----------+--------+--------+
+
+vagrant@vagrant:~$ export PATH=$PATH:/path/to/terraform
+
+vagrant@vagrant:~$ yc iam service-account create --name devops
+id: ajeh8n5obod57lcri82e
+folder_id: b1gavpp1ds7gdjdn4jkb
+created_at: "2022-10-26T14:28:06.573131573Z"
+name: devops
+
+vagrant@vagrant:~$ yc iam service-account list --folder-id b1gavpp1ds7gdjdn4jkb
++----------------------+--------+
+|          ID          |  NAME  |
++----------------------+--------+
+| ajeh8n5obod57lcri82e | devops |
++----------------------+--------+
+
+export YC_TOKEN=`yc iam create-token`
+
+vagrant@vagrant:~/terraform$ yc compute image get-latest-from-family centos-7 --folder-id standard-images
+id: fd88d14a6790do254kj7
+folder_id: standard-images
+created_at: "2022-06-20T10:44:47Z"
+name: centos-7-v20220620
+description: centos 7
+family: centos-7
+storage_size: "2076180480"
+min_disk_size: "10737418240"
+product_ids:
+  - f2euv1kekdgvc0jrpaet
+status: READY
+os:
+  type: LINUX
+pooled: true
+
+vagrant@vagrant:~/terraform$ terraform init
+
+Initializing the backend...
+
+Initializing provider plugins...
+- Finding latest version of yandex-cloud/yandex...
+- Installing yandex-cloud/yandex v0.81.0...
+- Installed yandex-cloud/yandex v0.81.0 (self-signed, key ID E40F590B50BB8E40)
+
+Partner and community providers are signed by their developers.
+If you'd like to know more about provider signing, you can read about it here:
+https://www.terraform.io/docs/cli/plugins/signing.html
+
+Terraform has created a lock file .terraform.lock.hcl to record the provider
+selections it made above. Include this file in your version control repository
+so that Terraform can guarantee to make the same selections by default when
+you run "terraform init" in the future.
+
+Terraform has been successfully initialized!
+
+vagrant@vagrant:~/terraform$ terraform validate
+Success! The configuration is valid.
+
+vagrant@vagrant:~/terraform$ terraform validate
+Success! The configuration is valid.
+
+vagrant@vagrant:~/terraform$ terraform apply -auto-approve
+
+Apply complete! Resources: 3 added, 0 changed, 0 destroyed.
+
+Outputs:
+
+external_ip_address_vm_1 = "51.250.80.146"
+internal_ip_address_vm_1 = "192.168.10.31"
+
+vagrant@vagrant:~/terraform$ terraform destroy -auto-approve
+Destroy complete! Resources: 3 destroyed.
+```
+---

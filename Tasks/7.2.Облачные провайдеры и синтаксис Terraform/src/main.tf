@@ -1,11 +1,11 @@
 provider "yandex" {
-  cloud_id  = ""
-  folder_id = ""
+  cloud_id  = "b1g68do2k0bc9bhhraom"
+  folder_id = "b1gavpp1ds7gdjdn4jkb"
   zone      = "ru-central1-a"
 }
 
 resource "yandex_compute_instance" "vm-01" {
-  name = "terraform1"
+  name = "terraform01"
 
   resources {
     cores  = 2
@@ -14,7 +14,7 @@ resource "yandex_compute_instance" "vm-01" {
 
   boot_disk {
     initialize_params {
-      image_id = "fd89ovh4ticpo40dkbvd"
+      image_id = "fd88d14a6790do254kj7"
 	  name        = "root-vm1"
       type        = "network-nvme"
       size        = "40"
