@@ -38,6 +38,49 @@
 
 В качестве результата приложите ссылку на файлы `server.yaml` и `atlantis.yaml`.
 
+**Решение:**
+
+[server.yaml](./src/server.yaml)
+
+```yaml
+repos:
+- id: /github.com/Sergey-Klimov/terraformgit/*/
+  allowed_overrides: [workflow]
+  allow_custom_workflows: true
+  
+workflows:
+  default:
+    plan:
+      steps:
+      - init
+      - plan:
+          extra_args: ["-lock", "false"]
+    apply:
+      steps:
+      - apply
+```
+
+[atlantis.yaml](./src/atlantis.yaml)
+
+```yaml
+version: 3
+parallel_apply: true
+parallel_plan: true
+projects:
+- name: task1
+  dir: .
+  workspace: stage
+  autoplan:
+    when_modified: ["../modules/**/*.tf", "*.tf"]
+    enabled: true
+- name: task1
+  dir: .
+  workspace: prod
+  autoplan:
+    when_modified: ["../modules/**/*.tf", "*.tf"]
+    enabled: true
+```
+
 ## Задача 3. Знакомство с каталогом модулей. 
 
 1. В [каталоге модулей](https://registry.terraform.io/browse/modules) найдите официальный модуль от aws для создания
@@ -49,4 +92,33 @@
 
 В качестве результата задания приложите ссылку на созданный блок конфигураций. 
 
+**Решение:**
+
+Так как доступа к `AWS` на данный момент у меня нет, то задание делал теоритически изходя из того, что "нагуглил".
+
+[main.tf](./src/main.tf)
+
+```jsonc
+provider "aws" {
+  region = "us-east-2"
+}
+
+module "ec2-instance" {
+  source  = "terraform-aws-modules/ec2-instance/aws"
+  version = "3.4.0"
+
+  name = "vm-module-1"
+
+  ami                    = "ami-ebd02392"
+  instance_type          = "t2.micro"
+  key_name               = "user1"
+  vpc_security_group_ids = ["sg-12345678"]
+  subnet_id              = "subnet-eddcdzz4"
+  
+  tags = {
+    Terraform   = "true"
+    Environment = "dev"
+  }
+}
+```
 ---
