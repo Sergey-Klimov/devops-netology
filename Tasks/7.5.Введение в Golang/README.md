@@ -68,7 +68,7 @@ func main() {
 
 	output := input * multiplier
 
-	fmt.Println("Результат:", output, "футов")
+	fmt.Println("Результат:", output, "футов.")
 }
 ```
 ![Task 7.5_3.1 ](./img/1.png)
