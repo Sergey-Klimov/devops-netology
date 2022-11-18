@@ -7,10 +7,11 @@
 
 **Решение:**
 
-```console
+```bash
 vagrant@vagrant:~$ sudo apt update && sudo apt upgrade
 vagrant@vagrant:~$ sudo apt install python3-pip
 vagrant@vagrant:~$ pip3 install ansible
+
 vagrant@vagrant:~$ ansible --version
 ansible [core 2.13.6]
   config file = None
@@ -21,12 +22,39 @@ ansible [core 2.13.6]
   python version = 3.8.10 (default, Jun 22 2022, 20:18:18) [GCC 9.4.0]
   jinja version = 3.1.2
   libyaml = True
+ 
+vagrant@vagrant:~$ git clone https://github.com/Sergey-Klimov/ansiblegit.git
 ```
 
-[https://github.com/Sergey-Klimov/ansiblegit](https://github.com/Sergey-Klimov/ansiblegit)
+[https://github.com/Sergey-Klimov/ansiblegit](https://github.com/Sergey-Klimov/ansiblegit/tree/main/playbook)
 
 ## Основная часть
 1. Попробуйте запустить playbook на окружении из `test.yml`, зафиксируйте какое значение имеет факт `some_fact` для указанного хоста при выполнении playbook'a.
+
+```bash
+vagrant@vagrant:~/ansiblegit/playbook$ ansible-playbook  -i inventory/test.yml site.yml
+
+PLAY [Print os facts] ********************************************************************************************************************
+
+TASK [Gathering Facts] *******************************************************************************************************************
+ok: [localhost]
+
+TASK [Print OS] **************************************************************************************************************************
+ok: [localhost] => {
+    "msg": "Ubuntu"
+}
+
+TASK [Print fact] ************************************************************************************************************************
+ok: [localhost] => {
+    "msg": 12
+}
+
+PLAY RECAP *******************************************************************************************************************************
+localhost                  : ok=3    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+```
+
+**Решение: 12**
+
 2. Найдите файл с переменными (group_vars) в котором задаётся найденное в первом пункте значение и поменяйте его на 'all default fact'.
 3. Воспользуйтесь подготовленным (используется `docker`) или создайте собственное окружение для проведения дальнейших испытаний.
 4. Проведите запуск playbook на окружении из `prod.yml`. Зафиксируйте полученные значения `some_fact` для каждого из `managed host`.
