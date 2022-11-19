@@ -31,7 +31,7 @@ vagrant@vagrant:~$ git clone https://github.com/Sergey-Klimov/ansiblegit.git
 ## Основная часть
 1. Попробуйте запустить playbook на окружении из `test.yml`, зафиксируйте какое значение имеет факт `some_fact` для указанного хоста при выполнении playbook'a.
 
-**Решение:** `some_fact` для указанного хоста имеет значение 12
+**Решение:** `some_fact` для указанного хоста имеет значение **12**
 
 ```
 vagrant@vagrant:~/ansiblegit/playbook$ ansible-playbook  -i inventory/test.yml site.yml
