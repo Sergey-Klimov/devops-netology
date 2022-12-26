@@ -1,4 +1,4 @@
-# Домашнее задание к занятию "2. Работа с Playbook"
+# Домашнее задание к занятию "8.2 Работа с Playbook"
 
 ## Подготовка к выполнению
 
@@ -26,6 +26,6 @@
 
 1. Что такое [clickhouse](https://www.youtube.com/watch?v=fjTNS2zkeBs) и [vector](https://www.youtube.com/watch?v=CgEhyffisLY)
    изучил, на канал подписался, палец вверх поставил, было интересно, спасибо за видео.
-2. Репозиторий [8.2. Работа с Playbook](https://github.com/Sergey-Klimov/devops-netology/tree/main/Tasks/8.2.%20%D0%A0%D0%B0%D0%B1%D0%BE%D1%82%D0%B0%20%D1%81%20Playbook)
+2. Репозиторий [8.2. Работа с Playbook](https://github.com/Sergey-Klimov/ansiblegit/tree/main/08-ansible-02-playbook)
 3. Сделано.
 4. [Подготовил](./clickhouse-01_1.png). 
