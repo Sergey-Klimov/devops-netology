@@ -24,8 +24,7 @@
 
 **Решение:**
 
-1. Что такое [clickhouse](https://www.youtube.com/watch?v=fjTNS2zkeBs) и [vector](https://www.youtube.com/watch?v=CgEhyffisLY)
-   изучил, на канал подписался, палец вверх поставил, было интересно, спасибо за видео.
-2. Репозиторий [8.2. Работа с Playbook](https://github.com/Sergey-Klimov/ansiblegit/tree/main/08-ansible-02-playbook)
+1. Что такое [clickhouse](https://www.youtube.com/watch?v=fjTNS2zkeBs) и [vector](https://www.youtube.com/watch?v=CgEhyffisLY) изучил, на канал подписался, палец вверх поставил, было интересно, спасибо за видео.
+2. Скачал из репозитория с домашним заданием и перенесите его в свой репозиторий: [8.2. Работа с Playbook](https://github.com/Sergey-Klimov/ansiblegit/tree/main/08-ansible-02-playbook)
 3. Сделано.
 4. [Подготовил](./clickhouse-01_1.png). 
