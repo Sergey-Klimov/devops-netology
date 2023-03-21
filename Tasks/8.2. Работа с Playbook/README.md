@@ -22,9 +22,29 @@
 
 ---
 
-**Решение:**
+## Решение:
+### Подготовка к выполнению
+
 
 1. Что такое [clickhouse](https://www.youtube.com/watch?v=fjTNS2zkeBs) и [vector](https://www.youtube.com/watch?v=CgEhyffisLY) изучил, на канал подписался, палец вверх поставил, было интересно, спасибо за видео.
 2. Скачал из репозитория с домашним заданием и перенесите его в свой репозиторий: [8.2. Работа с Playbook](https://github.com/Sergey-Klimov/ansiblegit/tree/main/08-ansible-02-playbook)
 3. Сделано.
-4. [Подготовил](./clickhouse-01_1.png). 
+4. Подготовил виртуальную машину с CentOS 7: 
+```bash
+vagrant@vagrant:~$ docker run --name centos7 -d pycontribs/centos:7 sleep 6000000
+Unable to find image 'pycontribs/centos:7' locally
+7: Pulling from pycontribs/centos
+2d473b07cdd5: Pull complete 
+43e1b1841fcc: Pull complete
+85bf99ab446d: Pull complete
+Digest: sha256:b3ce994016fd728998f8ebca21eb89bf4e88dbc01ec2603c04cc9c56ca964c69
+Status: Downloaded newer image for pycontribs/centos:7
+82824f810fbe3be8ac83c1242aa3557a398a6c562aef62cbe7551f917cd5d714
+vagrant@vagrant:~$ docker ps -a
+CONTAINER ID   IMAGE                      COMMAND           CREATED          STATUS          PORTS     NAMES
+82824f810fbe   pycontribs/centos:7        "sleep 6000000"   2 minutes ago    Up 2 minutes              centos7
+
+```
+
+### Основная часть
+
