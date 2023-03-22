@@ -314,10 +314,10 @@ vagrant@vagrant:~/share/cloud/playbook$
 
 ### Решение: 
 
-Сделано. [README.md](https://github.com/Sergey-Klimov/devops-netology/tree/main/Tasks/8.2.%20%D0%A0%D0%B0%D0%B1%D0%BE%D1%82%D0%B0%20%D1%81%20Playbook/playbook/readme)
+Сделано. [README.md](https://github.com/Sergey-Klimov/devops-netology/blob/main/Tasks/8.2.%20%D0%A0%D0%B0%D0%B1%D0%BE%D1%82%D0%B0%20%D1%81%20Playbook/playbook/README.md)
 
 10. Готовый playbook выложите в свой репозиторий, поставьте тег `08-ansible-02-playbook` на фиксирующий коммит, в ответ предоставьте ссылку на него.
 
 ### Решение: 
 
-Сделано. [README.md](https://github.com/Sergey-Klimov/devops-netology/tree/main/Tasks/8.2.%20%D0%A0%D0%B0%D0%B1%D0%BE%D1%82%D0%B0%20%D1%81%20Playbook#readme)
+Сделано. [README.md](https://github.com/Sergey-Klimov/devops-netology/blob/main/Tasks/8.2.%20%D0%A0%D0%B0%D0%B1%D0%BE%D1%82%D0%B0%20%D1%81%20Playbook/README.md)
