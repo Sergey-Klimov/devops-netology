@@ -3,6 +3,7 @@
 ## Подготовка к выполнению
 
 1. Подготовьте в Yandex Cloud три хоста: для `clickhouse`, для `vector` и для `lighthouse`.
+
 ![Yandex cloud](./img/VMYandexCloud.png)
 
 2. Репозиторий LightHouse находится [по ссылке](https://github.com/VKCOM/lighthouse).
@@ -268,7 +269,6 @@ vector:
   hosts:
     vector-01:
       ansible_host: 158.160.0.88
-      clickhouse_connect: http://127.0.0.1:8123
 nginx-lighthouse:
   hosts:
     nginx-lighthouse-01:
@@ -485,13 +485,13 @@ vagrant@vagrant:~/share/playbook$
 
 ### Решение: 
 
-Сделано. [README.md](https://github.com/Sergey-Klimov/devops-netology/blob/main/Tasks/8.2.%20%D0%A0%D0%B0%D0%B1%D0%BE%D1%82%D0%B0%20%D1%81%20Playbook/playbook/README.md)
+Сделано. [README.md](https://github.com/Sergey-Klimov/devops-netology/blob/main/Tasks/8.3.%20%D0%98%D1%81%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%20Yandex%20Cloud/playbook/README.md)
 
 10. Готовый playbook выложите в свой репозиторий, поставьте тег `08-ansible-03-yandex` на фиксирующий коммит, в ответ предоставьте ссылку на него.
 
 ### Решение: 
 
-Сделано. [README.md](https://github.com/Sergey-Klimov/devops-netology/blob/main/Tasks/8.2.%20%D0%A0%D0%B0%D0%B1%D0%BE%D1%82%D0%B0%20%D1%81%20Playbook/README.md)
+Сделано. [README.md](https://github.com/Sergey-Klimov/devops-netology/blob/main/Tasks/8.3.%20%D0%98%D1%81%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%20Yandex%20Cloud/README.md)
 
 ### Дополнительная информация:
 
