@@ -1,0 +1,3 @@
+---
+access_log_dir:  /var/log/nginx/vkcom_lighthouse-access.log
+error_log_dir: /var/log/nginx/vkcom_lighthouse-error.log
