@@ -518,8 +518,8 @@ Query id: b843ede5-e0cd-409f-85c1-048082192848
 └────────────────────┘
 
 6 rows in set. Elapsed: 0.001 sec.
-
-
----
+```
 
 ![Yandex cloud](./img/NGIX.png)
+
+---
