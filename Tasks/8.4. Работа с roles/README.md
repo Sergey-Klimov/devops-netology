@@ -43,7 +43,7 @@
    ```
 ### Решение:
 
-``` bash
+``` yml
 vagrant@vagrant:~/share/08-ansible-04-role/playbook$ cat requirements.yml
 
 ---
@@ -56,14 +56,14 @@ vagrant@vagrant:~/share/08-ansible-04-role/playbook$ cat requirements.yml
 
 ### Решение:
 
-``` bash
+``` yml
 vagrant@vagrant:~/share/08-ansible-04-role/playbook$ ansible-galaxy install -r requirements.yml
 Starting galaxy role install process
 - extracting clickhouse to /home/vagrant/.ansible/roles/clickhouse
 - clickhouse (1.11.0) was installed successfully
 ```
 
-``` bash
+``` yml
 vagrant@vagrant:~/.ansible/roles/clickhouse$ ls -la
 total 72
 drwxrwxr-x 10 vagrant vagrant  4096 Mar 25 19:01 .
@@ -87,7 +87,7 @@ drwxrwxr-x  2 vagrant vagrant  4096 Mar 25 19:01 vars
 
 ### Решение:
 
-``` bash
+``` yml
 vagrant@vagrant:~/.ansible/roles$ ansible-galaxy role init vector-role
 - Role vector-role was created successfully
 vagrant@vagrant:~/.ansible/roles$ ls -la
@@ -119,7 +119,7 @@ drwxrwxr-x  2 vagrant vagrant 4096 Mar 25 19:08 vars
 7. Повторите шаги 3–6 для LightHouse. Помните, что одна роль должна настраивать один продукт.
 ### Решение:
 
-```bash
+``` yml
 vagrant@vagrant:~/.ansible/roles$ ansible-galaxy role init LightHouse
 - Role LightHouse was created successfully
 vagrant@vagrant:~/.ansible/roles$ cd LightHouse
