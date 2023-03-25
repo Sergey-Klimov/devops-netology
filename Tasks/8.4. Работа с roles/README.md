@@ -58,9 +58,7 @@ vagrant@vagrant:~/share/08-ansible-04-role/playbook$ ansible-galaxy install -r r
 Starting galaxy role install process
 - extracting clickhouse to /home/vagrant/.ansible/roles/clickhouse
 - clickhouse (1.11.0) was installed successfully
-```
 
-``` yml
 vagrant@vagrant:~/.ansible/roles/clickhouse$ ls -la
 total 72
 drwxrwxr-x 10 vagrant vagrant  4096 Mar 25 19:01 .
