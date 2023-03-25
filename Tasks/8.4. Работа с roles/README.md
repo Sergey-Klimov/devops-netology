@@ -10,10 +10,10 @@
 2. Создайте два пустых публичных репозитория в любом своём проекте: vector-role и lighthouse-role.
 
 ### Решение:
-[vector-role](https://github.com/Sergey-Klimov/vector-role/tree/main)
-[lighthouse-role](https://github.com/Sergey-Klimov/lighthouse-role/main)
-Дополнительно:
-[Nginx-role](https://github.com/Sergey-Klimov/nginx-role/tree/main)
+- [vector-role](https://github.com/Sergey-Klimov/vector-role/tree/main)
+- [lighthouse-role](https://github.com/Sergey-Klimov/lighthouse-role/main)
+- Дополнительно:
+- [Nginx-role](https://github.com/Sergey-Klimov/nginx-role/tree/main)
 
 
 3. Добавьте публичную часть своего ключа к своему профилю на GitHub.
