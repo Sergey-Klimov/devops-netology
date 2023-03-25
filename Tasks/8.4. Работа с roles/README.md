@@ -12,7 +12,7 @@
 ### Решение:
 - [vector-role](https://github.com/Sergey-Klimov/vector-role/tree/main)
 - [lighthouse-role](https://github.com/Sergey-Klimov/lighthouse-role/tree/main)
-- Дополнительно:
+* Дополнительно:
 - [Nginx-role](https://github.com/Sergey-Klimov/nginx-role/tree/main)
 
 
