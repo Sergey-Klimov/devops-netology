@@ -1,0 +1,8 @@
+server {
+    listen       80;
+#    server_name   lighthouse;
+    root {{ lighthouse_location_dir }};
+    index index.html index.htm;
+    access_log  {{ access_log_dir }} main;
+    error_log {{ error_log_dir }};
+}
