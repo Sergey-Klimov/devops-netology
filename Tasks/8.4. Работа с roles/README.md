@@ -12,9 +12,6 @@
 ### Решение:
 - [vector-role](https://github.com/Sergey-Klimov/vector-role/tree/main)
 - [lighthouse-role](https://github.com/Sergey-Klimov/lighthouse-role/tree/main)
-* Дополнительно:
-- [Nginx-role](https://github.com/Sergey-Klimov/nginx-role/tree/main)
-
 
 3. Добавьте публичную часть своего ключа к своему профилю на GitHub.
 
@@ -90,12 +87,7 @@ drwxrwxr-x  2 vagrant vagrant  4096 Mar 25 19:01 vars
 ``` yml
 vagrant@vagrant:~/.ansible/roles$ ansible-galaxy role init vector-role
 - Role vector-role was created successfully
-vagrant@vagrant:~/.ansible/roles$ ls -la
-total 16
-drwxrwxr-x  4 vagrant vagrant 4096 Mar 25 19:08 .
-drwxrwxr-x  6 vagrant vagrant 4096 Mar 25 19:01 ..
-drwxrwxr-x 10 vagrant vagrant 4096 Mar 25 19:01 clickhouse
-drwxrwxr-x 10 vagrant vagrant 4096 Mar 25 19:08 vector-role
+
 vagrant@vagrant:~/.ansible/roles$ cd vector-role
 vagrant@vagrant:~/.ansible/roles/vector-role$ ls -la
 total 48
@@ -113,7 +105,12 @@ drwxrwxr-x  2 vagrant vagrant 4096 Mar 25 19:08 tests
 drwxrwxr-x  2 vagrant vagrant 4096 Mar 25 19:08 vars
 ```
 
-4. На основе tasks из старого playbook заполните новую role. Разнесите переменные между `vars` и `default`. 
+4. На основе tasks из старого playbook заполните новую role. Разнесите переменные между `vars` и `default`.
+
+### Решение:
+
+Сделано.
+
 5. Перенести нужные шаблоны конфигов в `templates`.
 6. Опишите в `README.md` обе роли и их параметры.
 7. Повторите шаги 3–6 для LightHouse. Помните, что одна роль должна настраивать один продукт.
@@ -122,6 +119,7 @@ drwxrwxr-x  2 vagrant vagrant 4096 Mar 25 19:08 vars
 ``` yml
 vagrant@vagrant:~/.ansible/roles$ ansible-galaxy role init LightHouse
 - Role LightHouse was created successfully
+
 vagrant@vagrant:~/.ansible/roles$ cd LightHouse
 vagrant@vagrant:~/.ansible/roles/LightHouse$ ls -la
 total 48
