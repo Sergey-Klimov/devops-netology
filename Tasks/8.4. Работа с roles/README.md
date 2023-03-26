@@ -135,7 +135,8 @@ WantedBy=multi-user.target
 
 6. Опишите в `README.md` обе роли и их параметры.
 
-- [README.md](https://github.com/Sergey-Klimov/lighthouse-role/blob/main/README.md)
+- [vector-role README.md](https://github.com/Sergey-Klimov/vector-role/blob/main/README.md)
+- [lighthouse-role README.md](https://github.com/Sergey-Klimov/lighthouse-role/blob/main/README.md)
 
 
 7. Повторите шаги 3–6 для LightHouse. Помните, что одна роль должна настраивать один продукт.
@@ -161,7 +162,6 @@ drwxrwxr-x  2 vagrant vagrant 4096 Mar 25 19:11 tests
 -rw-rw-r--  1 vagrant vagrant  539 Mar 25 19:11 .travis.yml
 drwxrwxr-x  2 vagrant vagrant 4096 Mar 25 19:11 vars
 ```
-
 
 -nginx.repo.j2
 
@@ -199,9 +199,6 @@ server
     }
 }   
 ```
-
-- [README.md](https://github.com/Sergey-Klimov/vector-role/blob/main/README.md)
-
 
 8. Выложите все roles в репозитории. Проставьте теги, используя семантическую нумерацию. Добавьте roles в `requirements.yml` в playbook.
 
