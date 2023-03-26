@@ -210,6 +210,9 @@ server
 - [vector-role](https://github.com/Sergey-Klimov/vector-role/tree/main)
 - [lighthouse-role](https://github.com/Sergey-Klimov/lighthouse-role/tree/main)
 
+
+-requirements.yml
+
 ```yml
 ---
 - src: git@github.com:AlexeySetevoi/ansible-clickhouse.git
