@@ -10,6 +10,7 @@
 2. Создайте два пустых публичных репозитория в любом своём проекте: vector-role и lighthouse-role.
 
 ### Решение:
+
 - [vector-role](https://github.com/Sergey-Klimov/vector-role/tree/main)
 - [lighthouse-role](https://github.com/Sergey-Klimov/lighthouse-role/tree/main)
 
