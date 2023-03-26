@@ -246,7 +246,7 @@ server
 
 - [vector-role](https://github.com/Sergey-Klimov/vector-role/tree/main)
 - [lighthouse-role](https://github.com/Sergey-Klimov/lighthouse-role/tree/main)
-- [08-ansible-04-role](https://github.com/Sergey-Klimov/devops-netology/tree/main/Tasks/8.4.%20%D0%A0%D0%B0%D0%B1%D0%BE%D1%82%D0%B0%20%D1%81%20roles)
+- [playbook](https://github.com/Sergey-Klimov/devops-netology/tree/main/Tasks/8.4.%20%D0%A0%D0%B0%D0%B1%D0%BE%D1%82%D0%B0%20%D1%81%20roles)
 ---
 
 ### Как оформить решение задания
