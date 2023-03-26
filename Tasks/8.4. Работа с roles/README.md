@@ -111,7 +111,33 @@ drwxrwxr-x  2 vagrant vagrant 4096 Mar 25 19:08 vars
 Сделано.
 
 5. Перенести нужные шаблоны конфигов в `templates`.
+
+### Решение:
+
+-vector.service.j2
+
+```yml
+[Unit]
+Description=Vector service
+Documentation=https://vector.dev
+After=network-online.target
+Requires=network-online.target
+
+[Service]
+User= {{ ansible_user_id }}
+Group= {{ ansible_user_gid }}
+ExecStart=/root/{{ vector_dir }}/bin/vector --config /root/{{ vector_dir }}/config/vector.toml --watch-config true
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
+```
+
 6. Опишите в `README.md` обе роли и их параметры.
+
+- [README.md](https://github.com/Sergey-Klimov/lighthouse-role/blob/main/README.md)
+
+
 7. Повторите шаги 3–6 для LightHouse. Помните, что одна роль должна настраивать один продукт.
 ### Решение:
 
@@ -135,11 +161,92 @@ drwxrwxr-x  2 vagrant vagrant 4096 Mar 25 19:11 tests
 -rw-rw-r--  1 vagrant vagrant  539 Mar 25 19:11 .travis.yml
 drwxrwxr-x  2 vagrant vagrant 4096 Mar 25 19:11 vars
 ```
+
+
+-nginx.repo.j2
+
+```yml
+[nginx-stable]
+name=nginx stable repo
+baseurl=http://nginx.org/packages/centos/$releasever/$basearch/
+gpgcheck=1
+enabled=1
+gpgkey=https://nginx.org/keys/nginx_signing.key
+module_hotfixes=true
+
+[nginx-mainline]
+name=nginx mainline repo
+baseurl=http://nginx.org/packages/mainline/centos/$releasever/$basearch/
+gpgcheck=1
+enabled=0
+gpgkey=https://nginx.org/keys/nginx_signing.key
+module_hotfixes=true
+```
+
+-nginx.conf.j2
+
+
+```yml
+server
+ {
+  listen 8123;
+  server_name localhost;
+  location / {
+        root {{ document_root }}/{{ app_dir }};
+        index index.html index.htm;
+        default_type "text/html";
+        try_files $uri.html $uri $uri/ =404;
+    }
+}   
+```
+
+- [README.md](https://github.com/Sergey-Klimov/vector-role/blob/main/README.md)
+
+
 8. Выложите все roles в репозитории. Проставьте теги, используя семантическую нумерацию. Добавьте roles в `requirements.yml` в playbook.
+
+### Решение:
+
+- [vector-role](https://github.com/Sergey-Klimov/vector-role/tree/main)
+- [lighthouse-role](https://github.com/Sergey-Klimov/lighthouse-role/tree/main)
+
+```yml
+---
+- src: git@github.com:AlexeySetevoi/ansible-clickhouse.git
+  scm: git
+  version: "1.11.0"
+  name: clickhouse
+
+- src: git@github.com:rdbmw/vector-role.git
+  scm: git
+  version: "1.0.0"
+  name: vector
+
+- src: git@github.com:rdbmw/lighthouse-role.git
+  scm: git
+  version: "1.0.0"
+  name: lighthouse
+```
+
 9. Переработайте playbook на использование roles. Не забудьте про зависимости LightHouse и возможности совмещения `roles` с `tasks`.
+
+### Решение:
+
+Сделано.
+
 10. Выложите playbook в репозиторий.
+
+### Решение:
+
+Сделано.
+
 11. В ответе дайте ссылки на оба репозитория с roles и одну ссылку на репозиторий с playbook.
 
+### Решение:
+
+- [vector-role](https://github.com/Sergey-Klimov/vector-role/tree/main)
+- [lighthouse-role](https://github.com/Sergey-Klimov/lighthouse-role/tree/main)
+- [08-ansible-04-role](https://github.com/Sergey-Klimov/devops-netology/tree/main/Tasks/8.4.%20%D0%A0%D0%B0%D0%B1%D0%BE%D1%82%D0%B0%20%D1%81%20roles)
 ---
 
 ### Как оформить решение задания
