@@ -1672,6 +1672,8 @@ ________________________________________________________________ summary _______
   py39-ansible30: commands succeeded
   congratulations :)
   ```
+  </details>
+  
 9. Добавьте новый тег на коммит с рабочим сценарием в соответствии с семантическим версионированием.
 
 [Ссылка на vector tag-1.0.3](https://github.com/Sergey-Klimov/vector-role/tree/v1.0.3)
