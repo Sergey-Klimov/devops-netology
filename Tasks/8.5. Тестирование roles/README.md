@@ -57,6 +57,8 @@ pycontribs/ubuntu   latest    42a4e3b21923   3 years ago     664MB
 
 ### Решение:
 
+<details><summary></summary>
+
 ```bash
 vagrant@vagrant:~/.ansible/roles/clickhouse$ molecule test -s centos_7
 INFO     centos_7 scenario test matrix: dependency, lint, cleanup, destroy, syntax, create, prepare, converge, idempotence, side_effect, verify, cleanup, destroy
@@ -124,6 +126,7 @@ localhost                  : ok=3    changed=1    unreachable=0    failed=0    s
 
 INFO     Pruning extra files from scenario ephemeral directory
 ```
+</details>
 
 2. Перейдите в каталог с ролью vector-role и создайте сценарий тестирования по умолчанию при помощи `molecule init scenario --driver-name docker`.
 
