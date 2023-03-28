@@ -186,6 +186,8 @@ INFO     Initialized scenario in /home/vagrant/.ansible/roles/vector-role/molecu
 
 ### Решение:
 
+<details><summary></summary>
+
 ```bash
 PLAY [Verify] ******************************************************************
 
@@ -234,6 +236,7 @@ localhost                  : ok=3    changed=2    unreachable=0    failed=0    s
 
 INFO     Pruning extra files from scenario ephemeral directory
 ```
+</details>
 
 6. Добавьте новый тег на коммит с рабочим сценарием в соответствии с семантическим версионированием.
 
@@ -1673,7 +1676,7 @@ ________________________________________________________________ summary _______
   congratulations :)
   ```
   </details>
-  
+
 9. Добавьте новый тег на коммит с рабочим сценарием в соответствии с семантическим версионированием.
 
 [Ссылка на vector tag-1.0.3](https://github.com/Sergey-Klimov/vector-role/tree/v1.0.3)
