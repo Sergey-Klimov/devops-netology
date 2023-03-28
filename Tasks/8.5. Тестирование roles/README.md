@@ -289,13 +289,18 @@ vagrant@vagrant:~/.ansible/roles$ docker run --privileged=True -v ~/.ansible/rol
 
 ```bash
 [root@155ba8278671 vector-role]# tox
+```
 
 <details><summary></summary>
-```
-lvlvlvlhvlhvljhvjhv,jhv,jhv
+
+```bash
+
+example
 
 ```
 </details>
+
+
 
 5. Создайте облегчённый сценарий для `molecule` с драйвером `molecule_podman`. Проверьте его на исполнимость.
 
