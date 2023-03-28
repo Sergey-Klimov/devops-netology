@@ -186,8 +186,58 @@ INFO     Initialized scenario in /home/vagrant/.ansible/roles/vector-role/molecu
 
 ### Решение:
 
+```bash
+PLAY [Verify] ******************************************************************
+
+TASK [Get Vector version] ******************************************************
+ok: [instance]
+
+TASK [Assert Vector instalation] ***********************************************
+ok: [instance] => {
+    "changed": false,
+    "msg": "All assertions passed"
+}
+
+TASK [Validation Vector configuration] *****************************************
+ok: [instance]
+
+TASK [Assert Vector validate config] *******************************************
+ok: [instance] => {
+    "changed": false,
+    "msg": "All assertions passed"
+}
+
+PLAY RECAP *********************************************************************
+instance                   : ok=4    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+
+INFO     Verifier completed successfully.
+INFO     Running ubuntu_latest > cleanup
+WARNING  Skipping, cleanup playbook not configured.
+INFO     Running ubuntu_latest > destroy
+
+PLAY [Destroy] *****************************************************************
+
+TASK [Set async_dir for HOME env] **********************************************
+ok: [localhost]
+
+TASK [Destroy molecule instance(s)] ********************************************
+changed: [localhost] => (item=instance)
+
+TASK [Wait for instance(s) deletion to complete] *******************************
+FAILED - RETRYING: [localhost]: Wait for instance(s) deletion to complete (300 retries left).
+changed: [localhost] => (item=instance)
+
+TASK [Delete docker networks(s)] ***********************************************
+
+PLAY RECAP *********************************************************************
+localhost                  : ok=3    changed=2    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0
+
+INFO     Pruning extra files from scenario ephemeral directory
+```
 
 6. Добавьте новый тег на коммит с рабочим сценарием в соответствии с семантическим версионированием.
+
+[Ссылка на vector tag-1.0.2](https://github.com/Sergey-Klimov/vector-role/tree/v1.0.2)
 
 ### Tox
 
