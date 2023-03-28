@@ -279,8 +279,8 @@ drwxrwxr-x  2 vagrant vagrant 4096 Mar 28 13:55  vars
 ### Решение:
 
 ```bash
-vagrant@vagrant:~/.ansible/roles/vector-role$ docker run --privileged=True -v /.ansible/roles/vector-role:/opt/vector-role -w /opt/vector-role -it aragast/netology:latest /bin/bash
-[root@5ea16a10b994 vector-role]# 
+vagrant@vagrant:~/.ansible/roles$ docker run --privileged=True -v ~/.ansible/roles/vector-role:/opt/vector-role -w /opt/vector-role -it aragast/netology:latest /bin/bash
+[root@33898258a456 vector-role]# 
 ```
 
 3. Внутри контейнера выполните команду `tox`, посмотрите на вывод.
@@ -288,10 +288,13 @@ vagrant@vagrant:~/.ansible/roles/vector-role$ docker run --privileged=True -v /.
 ### Решение:
 
 ```bash
-[root@45366bc5833d vector-role]# tox
-ERROR: tox config file (either pyproject.toml, tox.ini, setup.cfg) not found
-[root@45366bc5833d vector-role]# 
+[root@155ba8278671 vector-role]# tox
 ```
+<details><summary></summary>
+lvlvlvlhvlhvljhvjhv,jhv,jhv
+
+```
+</details>
 
 5. Создайте облегчённый сценарий для `molecule` с драйвером `molecule_podman`. Проверьте его на исполнимость.
 
