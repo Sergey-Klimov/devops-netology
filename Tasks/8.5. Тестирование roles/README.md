@@ -237,14 +237,65 @@ INFO     Pruning extra files from scenario ephemeral directory
 
 6. Добавьте новый тег на коммит с рабочим сценарием в соответствии с семантическим версионированием.
 
+### Решение:
+
 [Ссылка на vector tag-1.0.2](https://github.com/Sergey-Klimov/vector-role/tree/v1.0.2)
 
 ### Tox
 
 1. Добавьте в директорию с vector-role файлы из [директории](./example).
+
+### Решение:
+
+```console
+vagrant@vagrant:~/.ansible/roles/vector-role$ ls -la
+total 80
+drwxrwxr-x 12 vagrant vagrant 4096 Mar 28 14:02  .
+drwxrwxr-x  8 vagrant vagrant 4096 Mar 28 13:55  ..
+-rw-rw-r--  1 vagrant vagrant    0 Mar 28 14:02 '{'
+drwxrwxr-x  2 vagrant vagrant 4096 Mar 28 13:55  defaults
+-rw-rw-r--  1 vagrant vagrant    0 Mar 28 14:03  destroy
+-rw-rw-r--  1 vagrant vagrant  962 Mar 28 13:55  Dockerfile
+drwxrwxr-x  8 vagrant vagrant 4096 Mar 28 13:55  .git
+drwxrwxr-x  2 vagrant vagrant 4096 Mar 28 13:55  handlers
+drwxrwxr-x  3 vagrant vagrant 4096 Mar 28 13:55  .idea
+-rw-rw-r--  1 vagrant vagrant  651 Mar 28 13:55  Jenkinsfile
+drwxrwxr-x  2 vagrant vagrant 4096 Mar 28 13:55  meta
+drwxrwxr-x  5 vagrant vagrant 4096 Mar 28 13:55  molecule
+-rw-rw-r--  1 vagrant vagrant 1555 Mar 28 13:55  README.md
+-rw-rw-r--  1 vagrant vagrant  585 Mar 28 13:55  ScriptedJenkinsfile
+drwxrwxr-x  2 vagrant vagrant 4096 Mar 28 13:55  tasks
+drwxrwxr-x  2 vagrant vagrant 4096 Mar 28 13:55  templates
+drwxrwxr-x  2 vagrant vagrant 4096 Mar 28 13:55  tests
+-rw-rw-r--  1 vagrant vagrant  280 Mar 28 13:55  tox.ini
+-rw-rw-r--  1 vagrant vagrant   90 Mar 28 13:55  tox-requirements.txt
+-rw-rw-r--  1 vagrant vagrant  539 Mar 28 13:55  .travis.yml
+drwxrwxr-x  2 vagrant vagrant 4096 Mar 28 13:55  vars
+-rw-rw-r--  1 vagrant vagrant  598 Mar 28 13:55  .yamllint
+```
+
 2. Запустите `docker run --privileged=True -v <path_to_repo>:/opt/vector-role -w /opt/vector-role -it aragast/netology:latest /bin/bash`, где path_to_repo — путь до корня репозитория с vector-role на вашей файловой системе.
+
+### Решение:
+
+```bash
+vagrant@vagrant:~/.ansible/roles/vector-role$ docker run --privileged=True -v /.ansible/roles/vector-role:/opt/vector-role -w /opt/vector-role -it aragast/netology:latest /bin/bash
+[root@5ea16a10b994 vector-role]# 
+```
+
 3. Внутри контейнера выполните команду `tox`, посмотрите на вывод.
+
+### Решение:
+
+```bash
+[root@45366bc5833d vector-role]# tox
+ERROR: tox config file (either pyproject.toml, tox.ini, setup.cfg) not found
+[root@45366bc5833d vector-role]# 
+```
+
 5. Создайте облегчённый сценарий для `molecule` с драйвером `molecule_podman`. Проверьте его на исполнимость.
+
+
 6. Пропишите правильную команду в `tox.ini`, чтобы запускался облегчённый сценарий.
 8. Запустите команду `tox`. Убедитесь, что всё отработало успешно.
 9. Добавьте новый тег на коммит с рабочим сценарием в соответствии с семантическим версионированием.
