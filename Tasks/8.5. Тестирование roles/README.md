@@ -289,8 +289,9 @@ vagrant@vagrant:~/.ansible/roles$ docker run --privileged=True -v ~/.ansible/rol
 
 ```bash
 [root@155ba8278671 vector-role]# tox
-```
+
 <details><summary></summary>
+```
 lvlvlvlhvlhvljhvjhv,jhv,jhv
 
 ```
