@@ -57,6 +57,8 @@ pycontribs/ubuntu   latest    42a4e3b21923   3 years ago     664MB
 
 ### Решение:
 
+<details><summary></summary>
+
 ```bash
 vagrant@vagrant:~/.ansible/roles/clickhouse$ molecule test -s centos_7
 INFO     centos_7 scenario test matrix: dependency, lint, cleanup, destroy, syntax, create, prepare, converge, idempotence, side_effect, verify, cleanup, destroy
@@ -124,6 +126,7 @@ localhost                  : ok=3    changed=1    unreachable=0    failed=0    s
 
 INFO     Pruning extra files from scenario ephemeral directory
 ```
+</details>
 
 2. Перейдите в каталог с ролью vector-role и создайте сценарий тестирования по умолчанию при помощи `molecule init scenario --driver-name docker`.
 
@@ -186,6 +189,8 @@ INFO     Initialized scenario in /home/vagrant/.ansible/roles/vector-role/molecu
 
 ### Решение:
 
+<details><summary></summary>
+
 ```bash
 PLAY [Verify] ******************************************************************
 
@@ -234,6 +239,7 @@ localhost                  : ok=3    changed=2    unreachable=0    failed=0    s
 
 INFO     Pruning extra files from scenario ephemeral directory
 ```
+</details>
 
 6. Добавьте новый тег на коммит с рабочим сценарием в соответствии с семантическим версионированием.
 
@@ -1673,7 +1679,7 @@ ________________________________________________________________ summary _______
   congratulations :)
   ```
   </details>
-  
+
 9. Добавьте новый тег на коммит с рабочим сценарием в соответствии с семантическим версионированием.
 
 [Ссылка на vector tag-1.0.3](https://github.com/Sergey-Klimov/vector-role/tree/v1.0.3)
