@@ -700,15 +700,22 @@ if __name__ == '__main__':
 ```bash
 (venv) vagrant@vagrant:~/08-ansible-06-module/ansible$ python -m ansible.modules.my_own_module payload.json
 
-{"changed": true, "invocation": {"module_args": {"path": "test.txt", "content": "Text of the content from Sergey Klimov to complete the Homework for lesson 6 Creating your own modules"}}}
+{"changed": true, "invocation": {"module_args": {"path": "text.txt", "content": "Text of the content from Sergey Klimov to complete the Homework for lesson 6 Creating your own modules."}}}
+
 (venv) vagrant@vagrant:~/08-ansible-06-module/ansible$ python -m ansible.modules.my_own_module payload.json
 
-{"changed": false, "invocation": {"module_args": {"path": "test.txt", "content": "Text of the content from Sergey Klimov to complete the Homework for lesson 6 Creating your own modules"}}}
+{"changed": false, "invocation": {"module_args": {"path": "text.txt", "content": "Text of the content from Sergey Klimov to complete the Homework for lesson 6 Creating your own modules."}}}
 
-(venv) vagrant@vagrant:~/08-ansible-06-module/ansible$ cat test.txt
-Text of the content from Sergey Klimov to complete the Homework for lesson 6 Creating your own modules
+(venv) vagrant@vagrant:~/08-ansible-06-module/ansible$ cat payload.json
+{
+        "ANSIBLE_MODULE_ARGS": {
+                "path": "text.txt",
+                "content": "Text of the content from Sergey Klimov to complete the Homework for lesson 6 Creating your own modules."
+        }
+} 
 
-(venv) vagrant@vagrant:~/08-ansible-06-module/ansible$
+(venv) vagrant@vagrant:~/08-ansible-06-module/ansible$ cat text.txt
+Text of the content from Sergey Klimov to complete the Homework for lesson 6 Creating your own modules.
 ```
 
 **Шаг 5.** Напишите single task playbook и используйте module в нём.
