@@ -461,8 +461,8 @@ TASK [Delete docker networks(s)] ***********************************************
 PLAY RECAP *********************************************************************
 localhost                  : ok=2    changed=2    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0
 
-INFO     Pruning extra files from scenario ephemeral directory
-Finished: SUCCESS
+INFO     Pruning extra files from scenario ephemeral directoryFinished: SUCCESS
+
 </details>
 
 2. Сделать Declarative Pipeline Job, который будет запускать `molecule test` из любого вашего репозитория с ролью.
