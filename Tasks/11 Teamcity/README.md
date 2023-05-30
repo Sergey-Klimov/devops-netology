@@ -142,25 +142,39 @@ nexus-01                   : ok=17   changed=15   unreachable=0    failed=0    s
 ![Pom](./img/pom.png)
 
 7. Запустите сборку по master, убедитесь, что всё прошло успешно и артефакт появился в nexus.
-![image](https://user-images.githubusercontent.com/108946489/228407747-ee5f63d6-ed98-4d2b-9b69-c0739ce4e701.png)
+
+![Pom](./img/nexus.png)
+
 8. Мигрируйте `build configuration` в репозиторий.
-![image](https://user-images.githubusercontent.com/108946489/228449194-c4c08ee1-8f98-427b-a621-77ee73764f99.png)
+
+![Versioned](./img/Versioned.png)
+
 9. Создайте отдельную ветку `feature/add_reply` в репозитории.
 10. Напишите новый метод для класса Welcomer: метод должен возвращать произвольную реплику, содержащую слово `hunter`.
 11. Дополните тест для нового метода на поиск слова `hunter` в новой реплике.
 12. Сделайте push всех изменений в новую ветку репозитория.
 13. Убедитесь, что сборка самостоятельно запустилась, тесты прошли успешно.
-![image](https://user-images.githubusercontent.com/108946489/228452407-c21463ad-bec9-4071-9976-c344bda32787.png)
+
+![push](./img/run3.png)
+
 14. Внесите изменения из произвольной ветки `feature/add_reply` в `master` через `Merge`.
+
 15. Убедитесь, что нет собранного артефакта в сборке по ветке `master`.
-![image](https://user-images.githubusercontent.com/108946489/228457960-91be2e50-e672-42a0-af9a-6834be83d048.png)
+
+![master](./img/master.png)
+
 16. Настройте конфигурацию так, чтобы она собирала `.jar` в артефакты сборки.
-![image](https://user-images.githubusercontent.com/108946489/228458193-7cffddcc-5990-47cc-8fe7-bb87111145e6.png)
+![image](./img/jar.png)
+
 17. Проведите повторную сборку мастера, убедитесь, что сбора прошла успешно и артефакты собраны.
-![image](https://user-images.githubusercontent.com/108946489/228457540-40f47f0a-76d2-4d8a-bfef-121d31dc5f5e.png)
+
+![artifacts](./img/Artifacts.png)
+
 18. Проверьте, что конфигурация в репозитории содержит все настройки конфигурации из teamcity.
-![image](https://user-images.githubusercontent.com/108946489/228458460-3aea90a4-dfc6-4a85-b0ac-9521eb823a5a.png)
+
+![git](./img/git.png)
 19. В ответе пришлите ссылку на репозиторий.
-<a href='https://github.com/askarpoff/example-teamcity'>https://github.com/askarpoff/example-teamcity</a>
+
+<a href='https://github.com/Sergey-Klimov/example-teamcity'>https://github.com/Sergey-Klimov/example-teamcity.git</a>
 
 ---
