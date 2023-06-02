@@ -80,6 +80,6 @@ cc12280ac46d   logstash:8.7.0           "/usr/local/bin/dock…"   9 minutes ago
 
 Изучил как отображаются логи и как производить поиск по логам.
 
-![Discover](./img/discover.png)
+![Discover](./img/discover1.png)
 
 ---
