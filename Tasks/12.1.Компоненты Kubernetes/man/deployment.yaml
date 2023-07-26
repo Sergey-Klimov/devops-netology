@@ -1,0 +1,36 @@
+apiVersion : apps/v1
+kind: Deployment
+metadata:
+  name: netology-task-1
+  labels:
+    app: task-1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: task-1
+  template:
+    metadata:
+      labels:
+        app: task-1
+    spec:
+      containers:
+        - name: busybox
+          image: busybox
+          command: ["/bin/sh"]
+          args: ["-c", "while true; do echo \"new text\" >> /share/log.txt ; sleep 5; done"]
+          volumeMounts:
+          - mountPath: /share
+            name: share-volume
+        - name: multitool
+          image: wbitt/network-multitool
+          volumeMounts:
+          - mountPath: /share
+            name: share-volume
+          env:
+            - name: HTTP_PORT
+              value: "8080"
+      volumes:
+      - name: share-volume
+        emptyDir:
+          sizeLimit: 500Mi
