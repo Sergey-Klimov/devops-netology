@@ -124,7 +124,7 @@ yc-user@kubespray1:~$
 </details>
 
 
-![Yandex cloud](./img/yc.png)
+![Yandex cloud](img/yc.PNG)
 
 
 
