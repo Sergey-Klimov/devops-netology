@@ -30,7 +30,7 @@
 Поскольку период действия гранта в Yandex Cloud закончился,
 развернул на Oracle VM VirtualBox 5 node с помощью kubespray, как в предидущем ДЗ.
 
-![Yandex cloud](img/vm.PNG)
+![VirtualBox](img/vm.PNG)
 
 ```bash
 vagrant@node1:~$ kubectl get nodes -A
@@ -186,7 +186,7 @@ bash-5.1# exit
 exit
 ```
 
-![node1](img/node1.PNG)
+![node1](./img/node1.png)
 
 ### Правила приёма работы
 
