@@ -185,7 +185,8 @@ bash-5.1# curl cache
 bash-5.1# exit
 exit
 ```
-![node1](./img/node1.PNG)
+
+![node1](img/node1.PNG)
 
 ### Правила приёма работы
 
