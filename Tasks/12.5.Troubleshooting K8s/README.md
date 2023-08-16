@@ -64,6 +64,7 @@ nodelocaldns-wdtvz                        1/1     Running   6 (32m ago)    4d   
 ```
 
 Установливаем приложение по команде:
+
 ```shell
 kubectl apply -f https://raw.githubusercontent.com/netology-code/kuber-homeworks/main/3.5/files/task.yaml
 ```
@@ -75,7 +76,7 @@ Error from server (NotFound): error when creating "https://raw.githubusercontent
 Error from server (NotFound): error when creating "https://raw.githubusercontent.com/netology-code/kuber-homeworks/main/3.5/files/task.yaml": namespaces "data" not found
 vagrant@node1:~$ 
 ```
-Судя по выводу не найдены:   ```namespaces "web" not found и namespaces "data" not found ```
+Судя по выводу не найдены:   ```namespaces "web" not found``` и ```namespaces "data" not found ```
 Для решения проблемы создаём эти namespaces:
 
 ```bash
@@ -117,7 +118,7 @@ NAME                       READY   STATUS    RESTARTS   AGE     IP              
 auth-db-795c96cddc-dgvg7   1/1     Running   0          2m25s   10.233.97.139   node5   <none>           <none>
 ```
 
-Смотрим логи, что бы убедиться, что проблем нет, однако проблемы есть:
+Смотрим логи, что бы убедиться, что проблем нет, однако проблемы есть.
 В web-consumer найдена ошибка связанная с невозможностью определить ip адрес имени "auth-db":
 
 ```bash
@@ -150,11 +151,12 @@ curl: (6) Couldn't resolve host 'auth-db'
 curl: (6) Couldn't resolve host 'auth-db'
 curl: (6) Couldn't resolve host 'auth-db'
 ```
+
 Это связанно с тем что web-consumer создан в namespace web, а сервис с именем auth-db и поды к которым он предоставляет доступ находятся в namespace data.
 То есть разная подсеть: web - 10.233.74.0 и data - 10.233.97.0
 
-Для решения рпоблемы редактируем деплоймент web-consumer: ``` - while true; do curl auth-db.data; sleep 5; done ```
-После чегоприменения пересоздаются поды:
+Для решения проблемы редактируем деплоймент web-consumer: ``` - while true; do curl auth-db.data; sleep 5; done ```
+После применения пересоздаются поды:
 
 ```bash
 vagrant@node1:~$ kubectl edit deployment web-consumer -n web
