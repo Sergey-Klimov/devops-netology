@@ -350,7 +350,6 @@ Note: You didn't use the -out option to save this plan, so Terraform can't guara
 ```
 
 </details>
----
 
 Запускаем terraform apply -auto-approve:
 
